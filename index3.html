@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index3.css">
+
+</head>
+<body>
+
+    <div class="content">
+        <input type="checkbox" id="btn">
+        <label for="btn">
+            <span class="track">
+                <span class="track-top">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="track-bot">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </span>
+            <span class="thumb"></span>
+        </label>
+        <div class="lights">
+            <span class="light-off"></span>
+            <span class="light-on"></span>
+        </div>
+    
+    </div>
+    <div class="loading-message">Loading...</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var switchInput = document.querySelector('#btn');
+            var loadingMessage = document.querySelector('.loading-message');
+                
+            // Remueve cualquier estado previamente almacenado del interruptor al cargar la página
+            localStorage.removeItem('switchState');
+
+            // Asegura que el interruptor esté siempre en posición "off" al cargar la página
+            switchInput.checked = false;
+
+            var switchState = localStorage.getItem('switchState');
+            if (switchState === 'on') {
+                switchInput.checked = true;
+            }
+
+            switchInput.addEventListener('change', function() {
+                if (this.checked) {
+                    // Muestra el mensaje de carga cuando se activa el interruptor
+                    loadingMessage.style.display = 'block';
+                    // Agrega un retraso de 2 segundos (2000 milisegundos) antes de redirigir
+                    setTimeout(function() {
+                        window.location.href = './index2.html'; // Redirecciona a index.html después de 2 segundos
+                    }, 2000);
+                } else {
+                    // Aquí podrías agregar acciones si el interruptor está apagado
+                }
+            });
+        });
+    </script>
+</body>
+</html>
