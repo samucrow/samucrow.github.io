@@ -5,246 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var switchInput = document.querySelector('.switch__input');
+                
+            // Remueve cualquier estado previamente almacenado del interruptor al cargar la página
+            localStorage.removeItem('switchState');
+
+            // Asegura que el interruptor esté siempre en posición "off" al cargar la página
+            switchInput.checked = false;
+            var loadingMessage = document.querySelector('.loading-message');
+            var switchState = localStorage.getItem('switchState');
+                if (switchState === 'on') {
+                switchInput.checked = true;
+    }
+            switchInput.addEventListener('change', function() {
+                if (this.checked) {
+                    // Muestra el mensaje de carga cuando se activa el interruptor
+                    loadingMessage.style.display = 'block';
+                    // Agrega un retraso de 2 segundos (2000 milisegundos) antes de redirigir
+                    setTimeout(function() {
+                        window.location.href = 'index2.html'; // Redirecciona a otra_pagina.html después de 2 segundos
+                    }, 2000);
+                } else {
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    <header id="site-header" class="header">
-        <div class="container">
-            <nav>
-                <div class="logo" tabindex="1">
-                    <img src="SamuCrow_cutted2.png" width="120" height="100" >
-                </div>
-                <div class="nav-wrap">
-                    <div class="nav-button">
-                        <a id="nav-toggle" href="#!" class="">
-                            <span class="before"></span>
-                        </a>
-                    </div>
-                    <ul class="top_nav">
-                        <li>
-                            <a>Home</a>
-                        </li>
-                        <li>
-                            <a>Services</a>
-                            <ul class="sub-nav">
-                                <li>
-                                    <a>Jamstack</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Wordpress</a>
-                                </li>
-                                <li>
-                                    <a>Assets</a>
-                                    <ul class="sub-nav">
-                                        <li>
-                                            <a>Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Docs</a>
-                                        </li>
-                                        <li>
-                                            <a>Knowledge</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Logs</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#!">Custom</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="">About</a>
-                        </li>
-                        <li>
-                            <a href="">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!-- END Main Header -->
-    <div class="leftnav">
-        <ul class="leftnav-listing">
-            <li><a href="#One"></a></li>
-            <li><a href="#Two"></a></li>
-            <li><a href="#Three"></a></li>
-            <li><a href="#Four"></a></li>
-            <li><a href="#Five"></a></li>
-        </ul>
-    </div>
-    <!-- END Left Rail -->
-    <section class="vh yellow" id="One"><span>₷αღʊ₡ℜѻ₩</span></section>
-    <section class="vh " id="Two"><span>Sections</span></section>
-    <section class="vh aqua" id="Three"><span>Sections</span></section>
-    <section class="vh" id="Four"><span>Sections</span></section>
-    <section class="vh pink" id="Five"><span>Sections</span></section>
-    <footer class="site-footer">
-        <h2>Footer</h2>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Header Sticky
-function stickyFunction() {
-	var header = document.getElementById("site-header");
-	var sticky = header.offsetHeight;
-	if (window.pageYOffset > 0) {
-		header.classList.add("fixed");
-	} else {
-		header.classList.remove("fixed");
-	}
-}
-
-
-// LeftNav Sticky
-window.onscroll = function() {
-	var scrollposition = $(window).scrollTop();
-	var headerheight = $('.header').outerHeight();
-	if(scrollposition > 0 && scrollposition < $('.site-footer').offset().top - $('.leftnav-listing').outerHeight() - headerheight){
-		$('.leftnav-listing').addClass('leftnav-fixed')
-	}else{
-		$('.leftnav-listing').removeClass('leftnav-fixed')
-	}
-	stickyFunction();
-	onScrollHighlighted();
-};
-
-// LeftNav onscroll Highlight
-function onScrollHighlighted() {
-   var leftNavHeight = 0;
-   var scrollHeight = $(document).height();
-   var scrollPosition = $(window).height() + $(window).scrollTop();
-   var contentnavArray = [] ;
-   var scrollPos = $(document).scrollTop();  
-   var header_height = $('.header').outerHeight();
-
-    $('.leftnav-listing li a').each(function () {
-        var currLink = $(this);
-        var refElement = currLink.attr('href').replace('#', '');
-        contentnavArray.push(refElement);
-    }); 
-
-   $.each(contentnavArray, function (i, val) {
-       var refElement = $('section#' + val);
-       var currLink = $('*[href=\'#' + val + '\']');
-       var nextrefElement;       
-       if (contentnavArray.length > i + 1) {
-           nextrefElement = $('section#' + contentnavArray[i + 1]);
-       } else {
-           nextrefElement = $('footer');
-       }
-       if (0 !== refElement.length) {
-           if (refElement.offset().top - header_height <= scrollPos && nextrefElement.offset().top > scrollPos) {    
-               $('.leftnav-listing li').removeClass('is_visiable_section');
-               currLink.parents('.leftnav-listing li').addClass('is_visiable_section');
-           } else if (0 === (scrollHeight - scrollPosition) / scrollHeight) { 
-               currLink.parents('.leftnav-listing li').removeClass('is_visiable_section');
-               currLink.parents('.leftnav-listing li').addClass('is_visiable_section');
-           } else { 
-               currLink.parents('.leftnav-listing li').removeClass('is_visiable_section');
-           }
-       }
-   });
-}
-
-// leftnav on click scroll
-$(document).on('click', '.leftnav-listing li > a', function(){
-	var getattr = ($(this).attr('href')).trim();
-	var headmrg = ($('[id="' + getattr.substr(1) + '"]').css('margin-top')).slice(0,-2);
-	$('html, body').animate({
-		scrollTop: $('[id="' + getattr.substr(1) + '"]').offset().top - /*$('.header').outerHeight()*/ - headmrg
-	}, 1000);
-});
- 
-
-$(document).ready(function(){
-	var w_width = $( window ).width();
-	
-	/*Menu toggle Button*/
-	$('.nav-button').click(function() {
-		$('body').toggleClass('show_menu');
-		$('.nav-wrap ul.top_nav').slideToggle();
-	});
-
-	/*Append down-arrow Span*/
-	$('ul.top_nav > li:has(ul)').addClass('has-submenu').append('<span class="down-arrow"></span>');
-	$('li.has-submenu ul > li:has(ul)').addClass('has-submenu').append('<span class="down-arrow"></span>');
-
-	/*Navigation Menu */
-
- 	/*Multi level*/
-    $("ul.top_nav li span.down-arrow").on("click",function(e){  
-		if($(this).parents(".has-submenu").hasClass("submenu-active") && (!($(this).parent().hasClass("submenu-active")) ) ){ 
-			$(this).parent().siblings().removeClass("submenu-active");
-			$(this).parent().addClass("submenu-active");
-			$(this).parent().siblings(".has-submenu").children(".sub-nav").slideUp(400);
-			$(this).siblings(".sub-nav").slideDown(400); 
-		}	
-		else if($(this).parents(".has-submenu").hasClass("submenu-active") && $(this).parent().hasClass("submenu-active")){
-			$(this).parent().removeClass("submenu-active");
-			$(this).siblings(".sub-nav").slideUp(400); 
-		} 
-		else{
-			$(this).parent().siblings().removeClass("submenu-active");
-			$(this).parent().addClass("submenu-active");
-			$(".has-submenu > .sub-nav").slideUp(400);
-			$(this).siblings(".sub-nav").slideDown(400);
-		}
-	});
-	
-	/*First Level*/
-	/*$('ul.top_nav li span.down-arrow').click(function(e) {   
-	   $(this).parent().siblings().removeClass('submenu-active');
-	   $(this).parent().toggleClass('submenu-active');
-	   $('.sub-nav').not($(this).siblings() && $(this).parents('.sub-nav')).slideUp();
-	   $(this).siblings('.sub-nav').slideToggle();
-	   e.stopPropagation();
-	});*/
-
-	onScrollHighlighted();
-
-})
-
-$(window).resize( function(){
-	var w_width = $( window ).width();
-	if(w_width > 919){
-		$('.nav-wrap ul.top_nav').show();			
-		$('.nav-wrap ul.top_nav ul').removeAttr("style");;			
-	}
-
-	onScrollHighlighted();
-
-});
-
-// Smooth Sidebar
-// function sticky_relocate() {
-//     var window_top = $(window).scrollTop();
-//     var footer_top = $(".site-footer").offset().top;
-//     var div_top = $('.left_anchor').offset().top;
-//     var div_height = $(".leftnav-listing").height();
-    
-//     var padding = 20;  // tweak here or get from margins etc
-    
-//     if (window_top + div_height > footer_top - padding)
-//         $('.leftnav-listing').css({top: (window_top + div_height - footer_top + padding) * -1})
-//     else if (window_top > div_top) {
-//         $('.leftnav-listing').addClass('leftnav-fixed');
-//         $('.leftnav-listing').css({top: 0})
-//     } else {
-//         $('.leftnav-listing').removeClass('leftnav-fixed');
-//     }
-// }
-
-// $(function () {
-//     $(window).scroll(sticky_relocate);
-//     sticky_relocate();
-// });
-    </script>
+    <label class="switch">
+        <input class="switch__input" type="checkbox" role="switch">
+        <div class="loading-message"><h1>Loading...</h1></div>
+        <span class="switch__base-outer"></span>
+        <span class="switch__base-inner"></span>
+        <svg class="switch__base-neon" viewBox="0 0 40 24" width="40px" height="24px">
+            <defs>
+                <filter id="switch-glow">
+                    <feGaussianBlur result="coloredBlur" stddeviation="1"></feGaussianBlur>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <linearGradient id="switch-gradient1" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="hsl(var(--on-hue1),90%,70%)" />
+                    <stop offset="100%" stop-color="hsl(var(--on-hue2),90%,70%)" />
+                </linearGradient>
+                <linearGradient id="switch-gradient2" x1="0.7" y1="0" x2="0.3" y2="1">
+                    <stop offset="25%" stop-color="hsla(var(--on-hue1),90%,70%,0)" />
+                    <stop offset="50%" stop-color="hsla(var(--on-hue1),90%,70%,0.3)" />
+                    <stop offset="100%" stop-color="hsla(var(--on-hue2),90%,70%,0.3)" />
+                </linearGradient>
+            </defs>
+            <path fill="none" filter="url(#switch-glow)" stroke="url(#switch-gradient1)" stroke-width="1" stroke-dasharray="0 104.26 0" stroke-dashoffset="0.01" stroke-linecap="round" d="m.5,12C.5,5.649,5.649.5,12,.5h16c6.351,0,11.5,5.149,11.5,11.5s-5.149,11.5-11.5,11.5H12C5.649,23.5.5,18.351.5,12Z"/>
+        </svg>
+        <span class="switch__knob-shadow"></span>
+        <span class="switch__knob-container">
+            <span class="switch__knob">
+                <svg class="switch__knob-neon" viewBox="0 0 48 48" width="48px" height="48px">
+                    <circle fill="none" stroke="url(#switch-gradient2)" stroke-dasharray="0 90.32 0 54.19" stroke-linecap="round" stroke-width="1" r="23" cx="24" cy="24" transform="rotate(-112.5,24,24)" />
+                </svg>	
+            </span>
+        </span>
+        <span class="switch__led"></span>
+        <span class="switch__text">Power</span>
+    </label>
 </body>
 </html>
