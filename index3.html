@@ -50,7 +50,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var switchInput = document.querySelector('#btn');
-            var loadingMessage = document.querySelector('.loading-message');
+           
                 
             // Remueve cualquier estado previamente almacenado del interruptor al cargar la página
             localStorage.removeItem('switchState');
@@ -58,6 +58,7 @@
             // Asegura que el interruptor esté siempre en posición "off" al cargar la página
             switchInput.checked = false;
 
+            var loadingMessage = document.querySelector('.loading-message');
             var switchState = localStorage.getItem('switchState');
             if (switchState === 'on') {
                 switchInput.checked = true;
@@ -72,7 +73,6 @@
                         window.location.href = './index2.html'; // Redirecciona a index.html después de 2 segundos
                     }, 2000);
                 } else {
-                    // Aquí podrías agregar acciones si el interruptor está apagado
                 }
             });
         });
