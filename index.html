@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misterious Button</title>
+    <meta property="og:url" content="https://samucrow.github.io" />
+    <meta property="og:image" content="cosinas/SamuCrow_cutted2.png" />
+    <title>Botón Misterioso</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="icon" href="cosinas/cuervo minimalista.png" type="image/png" sizes="16x16">
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var switchInput = document.querySelector('.switch__input');
@@ -14,6 +17,7 @@
 
             // Asegura que el interruptor esté siempre en posición "off" al cargar la página
             switchInput.checked = false;
+            
             var loadingMessage = document.querySelector('.loading-message');
             var switchState = localStorage.getItem('switchState');
                 if (switchState === 'on') {
@@ -28,12 +32,6 @@
                         window.location.href = 'index2.html'; // Redirecciona a otra_pagina.html después de 2 segundos
                     }, 2000);
                 } else {
-                }
-            });
-                                    // Recargar la página cuando se muestra desde el caché del historial
-                                    window.addEventListener('pageshow', function(event) {
-                if (event.persisted) {
-                    window.location.reload();
                 }
             });
         });

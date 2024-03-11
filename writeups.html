@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writeups</title>
+    <link rel="stylesheet" href="./compilaciones_css/writeups.css">
+</head>
+<body>
+    <header id="site-header" class="header">
+        <div class="container">
+            <nav>
+                <div class="logo" tabindex="1">
+                    <a href="index2.html">
+                    <img src="cosinas/SamuCrow_cutted2.png" width="120" height="100" >
+                </a>
+                </div>
+                <div class="nav-wrap">
+                    <div class="nav-button">
+                        <a id="nav-toggle" href="#!" class="">
+                            <span class="before"></span>
+                        </a>
+                    </div>
+                    <ul class="top_nav">
+                        <li>
+                            <a>Home</a>
+                        </li>
+                        <!--
+                        <li>
+                           <a>Services</a>
+                            <ul class="sub-nav">
+                                <li>
+                                    <a>Jamstack</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Wordpress</a>
+                                </li>
+                                <li>
+                                    <a>Assets</a>
+                                    <ul class="sub-nav">
+                                        <li>
+                                            <a>Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">Docs</a>
+                                        </li>
+                                        <li>
+                                            <a>Knowledge</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">Logs</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#!">Custom</a>
+                                </li>
+                            </ul>
+                        </li>
+                    -->
+                        <li>
+                            <a href="writeups.html">Writeups</a>
+                        </li>
+                        <li>
+                            <a href="">Sobre mí</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+<div class="honeycombs">
+<ul class="honeycomb" lang="es">
+    <li class="honeycomb-cell">
+        <a href="./Html Máquinas/Próximamente.html">
+      <img class="honeycomb-cell__image" src="./Imágenes Máquinas/Remote.jpg">
+      <div class="honeycomb-cell__title">Máquina Remote (HTB)</div>
+        </a>
+    </li>
+    <li class="honeycomb-cell">
+        <img class="honeycomb-cell__image" src="https://source.unsplash.com/random/1">
+        <div class="honeycomb-cell__title">Próximamente</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img class="honeycomb-cell__image" src="https://source.unsplash.com/random/1">
+        <div class="honeycomb-cell__title">Próximamente</div>
+      </li>
+    <li class="honeycomb-cell honeycomb__placeholder"></li>
+  </ul>
+</div>
+  <!-- Scripts Section -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+
+// Header Sticky
+function stickyFunction() {
+    var header = document.getElementById("site-header");
+    var sticky = header.offsetTop;
+
+    if (window.pageYOffset > sticky) {
+        header.classList.add("fixed");
+    } else {
+        header.classList.remove("fixed");
+    }
+}
+
+// Llama a la función al hacer scroll
+window.onscroll = function() {
+    stickyFunction();
+};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css?family=Alice&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap');
+:root{--header-height:97px;}
+
+/*Reset css*/
+*{box-sizing:border-box;margin: 0;}
+.container{font-family:'Alice',serif;width:80%;max-width:1170px;margin:0;}
+
+/*Nav*/
+
+header{position: absolute;top:0;width:100%;box-shadow: 0 0 10px #00000036;z-index: 9;background: #111111ef;}
+header.fixed{position:fixed;top:0;}
+nav{display:flex ;align-items:center;justify-content:space-between;}
+.logo{display: inline-block; margin-left: 100px;font-weight: 900;color: #ffffff;}
+.logo a{color:#333;text-decoration:none;font-weight:700;}
+.nav-wrap ul{padding:0;}
+.nav-wrap ul.top_nav{display: block;}
+.nav-wrap ul li{list-style:none;display:inline-block;position: relative;}
+.nav-wrap ul li a{color: #ffffff;text-decoration:none;font-size:40px;padding: 28px 5px 28px 5px;position:relative;display:inline-block;}
+.nav-wrap ul.sub-nav {display: none;}
+@media screen and (min-width: 919px){
+  .nav-wrap ul.sub-nav {display: none;width: 220px;color: #ffffff;right: 0;padding: 0px 0px;margin: 0px;position: absolute;left: 0px;-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.3);box-shadow: 0 2px 2px 0 rgba(0,0,0,.3);}
+  .nav-wrap ul.sub-nav ul.sub-nav{left: 100%;top: 0;z-index: 1;}
+  .nav-wrap li:hover > ul.sub-nav, .nav-wrap ul.sub-nav li{display: block;}
+  .nav-wrap ul.sub-nav li a{padding: 12px;color: #333;display: block;border-bottom: 1px solid #eee;margin: 0;background: #fff;}
+  .nav-wrap ul.sub-nav ul.sub-nav li a{padding-right: 25px;}
+  .nav-wrap ul.sub-nav li:hover > a {opacity: 0.8}
+  .nav-wrap li:hover > ul{display:block;-moz-animation:fadeInUp .3s ease-in;-webkit-animation:fadeInUp .3s ease-in;animation:fadeInUp .3s ease-in;}
+  .nav-wrap > ul > li:not(:last-child){margin-right: 30px;}
+  .nav-wrap ul ul li:hover > ul{display:block;-moz-animation:fadeInRight .3s ease-in;-webkit-animation:fadeInRight .3s ease-in;animation:fadeInRight .3s ease-in;}
+  .nav-wrap ul li.has-submenu:after{font-family:"Font Awesome 5 Free";font-weight:900;content:"\f078";font-size:16px;color:#fff;padding-right: 5px;}
+  .nav-wrap ul ul li.has-submenu:after{color: #333;transform: rotate(-90deg);position: absolute;right: 8px;top: 50%;padding: 0;margin-top: -7px;}
+  .nav-wrap ul li.submenu-active > ul.sub-nav{display:none!important;}
+  .nav-wrap ul li.submenu-active:hover > ul.sub-nav{display:block!important;}
+  /*Hover Effect*/
+  .nav-wrap > ul > li:before{content:'';position:absolute;width:100%;transform:scaleX(0);height:2px;bottom:0;left:0;background-color:#3c4cff;transform-origin:bottom right;transition:transform 0.4s cubic-bezier(0.86,0,0.07,1);}
+  .nav-wrap > ul > li.active:before,
+  .nav-wrap > ul > li:hover:before{  transform: scaleX(1);transform-origin: bottom left;}
+  /*Hover Effect*/
+}
+ 
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000aa;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+}
+
+/*Nav*/
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.837); /* Ajusta el valor alpha (cuarto parámetro) según la opacidad deseada */
+    z-index: -1; /* Asegura que esté detrás del contenido principal */
+}
+
+body {
+    background-image: url(../cosinas/fondo.png);
+    background-size: cover; /* Ajusta según sea necesario */
+    background-position: center;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    background-color: #000000;
+}
+
+.mrrobot {
+    user-select: none;
+    font-family: 'Bungee Shade', cursive;
+    font-size: 100px;
+    width: 100%;
+    position: sticky;
+    margin-left: 8%;
+}
+
+  .mrrobot b {
+    font-family: 'Bungee Shade', cursive;
+    color: red;
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  }
+  .mrrobot b span {
+    animation: blink linear infinite 2s;
+  }
+  @keyframes blink {
+    75% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    79% {
+      color: #333333;
+    }
+    80% {
+      text-shadow: none;
+    }
+    81% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    82% {
+      color: #333333;
+    }
+    83% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    90% {
+      color: #333333;
+      text-shadow: none;
+    }
+    100% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+  }
