@@ -125,3 +125,22 @@ body {
       text-shadow: inherit;
     }
   }
+
+  /* Nuevas reglas de medios para dispositivos móviles */
+@media only screen and (max-width: 50px) {
+  header {
+      position: relative;
+      background: #111111ef;
+      /* Ajusta otros estilos según sea necesario para pantallas más pequeñas */
+  }
+
+  .nav-wrap ul {
+      display: none; /* Puedes modificar esto según tus necesidades en móviles */
+  }
+
+  .mrrobot {
+      margin-left: 4%; /* Ajusta el margen para móviles */
+  }
+
+  /* Otras reglas de estilo específicas para móviles */
+}
