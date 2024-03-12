@@ -26,7 +26,7 @@ nav{display:flex ;align-items:center;justify-content:space-between;}
   .nav-wrap ul.sub-nav {display: none;width: 20%;color: #ffffff;right: 0;padding: 0px 0px;margin: 0px;position: absolute;left: 0px;-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.3);box-shadow: 0 2px 2px 0 rgba(0,0,0,.3);}
   .nav-wrap ul.sub-nav ul.sub-nav{left: 100%;top: 0;z-index: 1;}
   .nav-wrap li:hover > ul.sub-nav, .nav-wrap ul.sub-nav li{display: block;}
-  .nav-wrap ul.sub-nav li a{padding: 12px;color: #333;display: block;border-bottom: 1px solid #eee;margin: 0;background: #fff;}
+  .nav-wrap ul.sub-nav li a{padding: 10%;color: #333;display: block;border-bottom: 1px solid #eee;margin: 0;background: #fff;}
   .nav-wrap ul.sub-nav ul.sub-nav li a{padding-right: 25px;}
   .nav-wrap ul.sub-nav li:hover > a {opacity: 0.8}
   .nav-wrap li:hover > ul{display:block;-moz-animation:fadeInUp .3s ease-in;-webkit-animation:fadeInUp .3s ease-in;animation:fadeInUp .3s ease-in;}
