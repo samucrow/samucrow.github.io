@@ -15,7 +15,7 @@
             <nav>
                 <div class="logo" tabindex="1">
                     <a href="index2.html">
-                    <img src="cosinas/SamuCrow_cutted2.png" width="120" height="100" >
+                    <img src="cosinas/SamuCrow_cutted2.png" width="115" height="95" >
                 </a>
                 </div>
                 <div class="nav-wrap">
@@ -107,17 +107,35 @@ function stickyFunction() {
 
 
 // LeftNav Sticky
-window.onscroll = function() {
-	var scrollposition = $(window).scrollTop();
-	var headerheight = $('.header').outerHeight();
-	if(scrollposition > 0 && scrollposition < $('.site-footer').offset().top - $('.leftnav-listing').outerHeight() - headerheight){
-		$('.leftnav-listing').addClass('leftnav-fixed')
-	}else{
-		$('.leftnav-listing').removeClass('leftnav-fixed')
-	}
-	stickyFunction();
-	onScrollHighlighted();
-};
+function handleScroll() {
+  var scrollposition = $(window).scrollTop();
+  var headerheight = $('.header').outerHeight();
+
+  if (scrollposition > 0 && scrollposition < $('.site-footer').offset().top - $('.leftnav-listing').outerHeight() - headerheight) {
+    $('.leftnav-listing').addClass('leftnav-fixed');
+  } else {
+    $('.leftnav-listing').removeClass('leftnav-fixed');
+  }
+
+  stickyFunction();
+  onScrollHighlighted();
+}
+
+$(document).ready(function() {
+  // Ejecutar la función inicialmente
+  handleScroll();
+
+  // Manejar el evento de scroll en ordenadores
+  window.onscroll = function() {
+    handleScroll();
+  };
+
+  // Manejar el evento de scroll y táctil en dispositivos móviles
+  $(window).on('scroll touchmove', function() {
+    handleScroll();
+  });
+});
+
 
 // LeftNav onscroll Highlight
 function onScrollHighlighted() {
