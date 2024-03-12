@@ -18,7 +18,7 @@ nav{display:flex ;align-items:center;justify-content:space-between;}
 .nav-wrap ul li{list-style:none;display:inline-block;position: relative;}
 .nav-wrap ul li a{color: #ffffff;text-decoration:none;font-size:40px;padding: 28px 5px 28px 5px;position:relative;display:inline-block;}
 .nav-wrap ul.sub-nav {display: none;}
-@media screen and (max-width: 50%){
+@media screen and (max-width: 10%){
   header{position: absolute;top:0;bottom:-50%; width:100%;box-shadow: 0 0 10px #00000036;z-index: 9;background: #111111ef;}
   header.fixed{position:fixed;top:0;}
   .logo{display: inline-block;margin-bottom: -5%;margin-top: 20%; margin-right: 100px; margin-left:5px;font-weight: 900;color: #ffffff;}
