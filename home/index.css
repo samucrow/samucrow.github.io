@@ -83,9 +83,9 @@ ul.leftnav-listing li:not(:last-child):after{content:'';height:100%;position:abs
 /*Demo Extra css*/
 footer {height: 150px;display: flex;justify-content: center;align-items: center;}
 .vh{height: 100vh;background: #010a43;display: flex;align-items: center;font-size: 5vw;color: #ffff;justify-content: center;text-transform: uppercase;}
-.vh.aqua{background-image:url('cosinas/fondo.png');background-size: cover;}
-.vh.pink{background-image:url('cosinas/fondo.png');background-size: cover;}
-.vh.yellow{background-image:url('cosinas/fondo.png');background-size: cover;}
+.vh.aqua{background-image:url('../cosinas/fondo.png');background-size: cover;}
+.vh.pink{background-image:url('../cosinas/fondo.png');background-size: cover;}
+.vh.yellow{background-image:url('../cosinas/fondo.png');background-size: cover;}
 .vh span {font-family: 'Roboto', sans-serif;letter-spacing: 0.02em; -webkit-text-stroke-color: #fff;
   -webkit-text-stroke-width: 0.02em;
   -webkit-text-fill-color: transparent;
