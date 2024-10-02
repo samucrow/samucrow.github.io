@@ -11,13 +11,27 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Fakes the loading setting a timeout
-            setTimeout(function() {
-                $('body').addClass('loaded');
-                window.location.href = './home';
-            }, 3500);
-        });
+$(document).ready(function() {
+    let timer; // Variable para almacenar el temporizador
+
+    function startRedirectTimer() {
+        clearTimeout(timer); // Limpiar cualquier temporizador existente
+        timer = setTimeout(function() {
+            $('body').addClass('loaded');
+            window.location.href = './home'; // Redirigir a home
+        }, 3500); // 3500 ms = 3.5 segundos
+    }
+
+    // Iniciar el temporizador al cargar la página
+    startRedirectTimer();
+
+    // Escuchar el cambio de visibilidad
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'visible') {
+            startRedirectTimer(); // Reiniciar el temporizador si la pestaña es visible
+        }
+    });
+});
     </script>
 </head>
 <body>
