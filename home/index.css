@@ -144,8 +144,16 @@ p {
         height: auto; /* Permitir que el cuerpo se ajuste a la altura del contenido */
          /* Espaciado alrededor del contenido */
         overflow-x: hidden;
+        margin-top: 27%;
+        background-color: #010a43;
     }
-    
+    .overlay h1 {
+      -webkit-text-fill-color: #ffffff;
+      font-size: 10vw;
+  }
+  .overlay p {
+      display: none;
+  }
 
     .logo img{
         height: 70px;
