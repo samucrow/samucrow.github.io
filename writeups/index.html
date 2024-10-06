@@ -1,271 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="https://samucrow.github.io" />
-    <meta property="og:image" content="../cosinas/SamuCrow_cutted2.png" />
-    <title>Writeups</title>
-    <link rel="stylesheet" href="../compilaciones_css/writeups.css">
-    <link rel="icon" href="../cosinas/cuervo minimalista.png" type="image/png" sizes="16x16">
-</head>
-<body>
-    <header id="site-header" class="header">
-        <div class="container">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url" content="https://samucrow.github.io" />
+        <meta property="og:image" content="../cosinas/SamuCrow_cutted2.png" />
+        <title>SamuCrow's Web</title>
+        <link rel="stylesheet" href="./index.css">
+        <link rel="icon" href="../cosinas/cuervo minimalista.png" type="image/png" sizes="16x16">
+    </head>
+    <body>
+
+        <header>
+            <div class="logo">
+                <a href="https://www.youtube.com/@samucrow/">
+                    <img src="../cosinas/SamuCrow_cutted2.png" alt="Logo">
+                </a>
+            </div>
             <nav>
-                <div class="logo" tabindex="1">
-                    <a href="../home/">
-                        <img src="../cosinas/SamuCrow_cutted2.png" width="115" height="95" >
+                <ul>
+                    <li><a href="../home/">Inicio</a></li>
+                    <li><a href="../writeups/">Writeups</a></li>
+                    <li><a href="https://www.linkedin.com/in/samucrow/">Sobre mí</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="honeycomb">
+            <div class="panel">
+                <div class="hexagon-border"></div> <!-- Hexágono negro -->
+                <div class="panel-content"><a href="../máquinas/">
+                    <div class="panel-text">MÁQUINA REMOTE (HTB)</div>
+                    <img src="../Imágenes Máquinas/Remote.jpg" alt="Imagen 1" class="panel__image">
                 </a>
                 </div>
-                <div class="nav-wrap">
-                    <div class="nav-button">
-                        <a id="nav-toggle" href="#!" class="">
-                            <span class="before"></span>
-                        </a>
-                    </div>
-                    <ul class="top_nav">
-                        <li>
-                            <a href="../home/">Home</a>
-                        </li>
-                        <!--
-                        <li>
-                           <a>Services</a>
-                            <ul class="sub-nav">
-                                <li>
-                                    <a>Jamstack</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Wordpress</a>
-                                </li>
-                                <li>
-                                    <a>Assets</a>
-                                    <ul class="sub-nav">
-                                        <li>
-                                            <a>Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Docs</a>
-                                        </li>
-                                        <li>
-                                            <a>Knowledge</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Logs</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#!">Custom</a>
-                                </li>
-                            </ul>
-                        </li>
-                    -->
-                        <li>
-                            <a href="index.html">Writeups</a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/samucrow/">Sobre mí</a>
-                        </li>
-                    </ul>
+            </div>
+            <div class="panel">
+                <div class="hexagon-border"></div> <!-- Hexágono negro -->
+                <div class="panel-content">
+                    <div class="panel-text">PRÓXIMAMENTE</div>
+                    <img id="randomImage1" alt="Imagen 1" class="panel__image">
                 </div>
-            </nav>
+            </div>
+            <div class="panel">
+                <div class="hexagon-border"></div> <!-- Hexágono negro -->
+                <div class="panel-content">
+                    <div class="panel-text">PRÓXIMAMENTE</div>
+                    <img id="randomImage2" alt="Imagen 2" class="panel__image">
+                </div>
+            </div>
         </div>
-    </header>
-<div class="honeycombs">
-<ul class="honeycomb" lang="es">
-    <li class="honeycomb-cell">
-        <a href="../máquinas/">
-      <img class="honeycomb-cell__image" src="../Imágenes Máquinas/Remote.jpg">
-      <div class="honeycomb-cell__title">Máquina Remote (HTB)</div>
-        </a>
-    </li>
-    <li class="honeycomb-cell">
-        <img class="honeycomb-cell__image" src="https://source.unsplash.com/random/1">
-        <div class="honeycomb-cell__title">Próximamente</div>
-      </li>
-      <li class="honeycomb-cell">
-        <img class="honeycomb-cell__image" src="https://source.unsplash.com/random/1">
-        <div class="honeycomb-cell__title">Próximamente</div>
-      </li>
-    <li class="honeycomb-cell honeycomb__placeholder"></li>
-  </ul>
-</div>
-  <!-- Scripts Section -->
+        
+        
+        
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-      // Header Sticky
-function stickyFunction() {
-  var header = document.getElementById("site-header");
-  var sticky = header.offsetHeight;
-  if (window.pageYOffset > 0) {
-      header.classList.add("fixed");
-  } else {
-      header.classList.remove("fixed");
-  }
-}
-// LeftNav Sticky
-function handleScroll() {
-  var scrollposition = $(window).scrollTop();
-  var headerheight = $('.header').outerHeight();
+<!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const apiKey = '46368007-38df286c965f19a67d5ae69d2'; // Clave API de Pixabay
 
-  if (scrollposition > 0 && scrollposition < $('.site-footer').offset().top - $('.leftnav-listing').outerHeight() - headerheight) {
-    $('.leftnav-listing').addClass('leftnav-fixed');
-  } else {
-    $('.leftnav-listing').removeClass('leftnav-fixed');
-  }
+        // Función para obtener una imagen aleatoria
+        function fetchRandomImage(imgElementId, pageNumber) {
+            const url = `https://pixabay.com/api/?key=${apiKey}&q=technology&image_type=photo&per_page=3&page=${pageNumber}&min_width=640&min_height=480`;
 
-  stickyFunction();
-  onScrollHighlighted();
-}
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.hits.length > 0) {
+                        const imageUrl = data.hits[0].webformatURL; // Obtiene la URL de la imagen
+                        const imgElement = document.getElementById(imgElementId);
+                        imgElement.src = imageUrl; // Establece la URL en la etiqueta <img>
+                        imgElement.classList.add('loaded'); // Agrega la clase para mostrar la imagen
+                    } else {
+                        console.error('No se encontraron imágenes.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
-$(document).ready(function() {
-  // Ejecutar la función inicialmente
-  handleScroll();
+        // Genera un número aleatorio para el número de página
+        function getRandomPageNumber() {
+            return Math.floor(Math.random() * 20) + 1; // Cambia el rango según tus necesidades
+        }
 
-  // Manejar el evento de scroll en ordenadores
-  window.onscroll = function() {
-    handleScroll();
-  };
-
-  // Manejar el evento de scroll y táctil en dispositivos móviles
-  $(window).on('scroll touchmove', function() {
-    handleScroll();
-  });
-});
-
-
-// LeftNav onscroll Highlight
-function onScrollHighlighted() {
-   var leftNavHeight = 0;
-   var scrollHeight = $(document).height();
-   var scrollPosition = $(window).height() + $(window).scrollTop();
-   var contentnavArray = [] ;
-   var scrollPos = $(document).scrollTop();  
-   var header_height = $('.header').outerHeight();
-
-    $('.leftnav-listing li a').each(function () {
-        var currLink = $(this);
-        var refElement = currLink.attr('href').replace('#', '');
-        contentnavArray.push(refElement);
-    }); 
-
-   $.each(contentnavArray, function (i, val) {
-       var refElement = $('section#' + val);
-       var currLink = $('*[href=\'#' + val + '\']');
-       var nextrefElement;       
-       if (contentnavArray.length > i + 1) {
-           nextrefElement = $('section#' + contentnavArray[i + 1]);
-       } else {
-           nextrefElement = $('footer');
-       }
-       if (0 !== refElement.length) {
-           if (refElement.offset().top - header_height <= scrollPos && nextrefElement.offset().top > scrollPos) {    
-               $('.leftnav-listing li').removeClass('is_visiable_section');
-               currLink.parents('.leftnav-listing li').addClass('is_visiable_section');
-           } else if (0 === (scrollHeight - scrollPosition) / scrollHeight) { 
-               currLink.parents('.leftnav-listing li').removeClass('is_visiable_section');
-               currLink.parents('.leftnav-listing li').addClass('is_visiable_section');
-           } else { 
-               currLink.parents('.leftnav-listing li').removeClass('is_visiable_section');
-           }
-       }
-   });
-}
-
-// leftnav on click scroll
-$(document).on('click', '.leftnav-listing li > a', function(){
-	var getattr = ($(this).attr('href')).trim();
-	var headmrg = ($('[id="' + getattr.substr(1) + '"]').css('margin-top')).slice(0,-2);
-	$('html, body').animate({
-		scrollTop: $('[id="' + getattr.substr(1) + '"]').offset().top - /*$('.header').outerHeight()*/ - headmrg
-	}, 1000);
-});
- 
-
-$(document).ready(function(){
-	var w_width = $( window ).width();
-	
-	/*Menu toggle Button*/
-	$('.nav-button').click(function() {
-		$('body').toggleClass('show_menu');
-		$('.nav-wrap ul.top_nav').slideToggle();
-	});
-
-	/*Append down-arrow Span*/
-	$('ul.top_nav > li:has(ul)').addClass('has-submenu').append('<span class="down-arrow"></span>');
-	$('li.has-submenu ul > li:has(ul)').addClass('has-submenu').append('<span class="down-arrow"></span>');
-
-	/*Navigation Menu */
-
- 	/*Multi level*/
-    $("ul.top_nav li span.down-arrow").on("click",function(e){  
-		if($(this).parents(".has-submenu").hasClass("submenu-active") && (!($(this).parent().hasClass("submenu-active")) ) ){ 
-			$(this).parent().siblings().removeClass("submenu-active");
-			$(this).parent().addClass("submenu-active");
-			$(this).parent().siblings(".has-submenu").children(".sub-nav").slideUp(400);
-			$(this).siblings(".sub-nav").slideDown(400); 
-		}	
-		else if($(this).parents(".has-submenu").hasClass("submenu-active") && $(this).parent().hasClass("submenu-active")){
-			$(this).parent().removeClass("submenu-active");
-			$(this).siblings(".sub-nav").slideUp(400); 
-		} 
-		else{
-			$(this).parent().siblings().removeClass("submenu-active");
-			$(this).parent().addClass("submenu-active");
-			$(".has-submenu > .sub-nav").slideUp(400);
-			$(this).siblings(".sub-nav").slideDown(400);
-		}
-	});
-	
-	/*First Level*/
-	/*$('ul.top_nav li span.down-arrow').click(function(e) {   
-	   $(this).parent().siblings().removeClass('submenu-active');
-	   $(this).parent().toggleClass('submenu-active');
-	   $('.sub-nav').not($(this).siblings() && $(this).parents('.sub-nav')).slideUp();
-	   $(this).siblings('.sub-nav').slideToggle();
-	   e.stopPropagation();
-	});*/
-
-	onScrollHighlighted();
-
-})
-
-$(window).resize( function(){
-	var w_width = $( window ).width();
-	if(w_width > 919){
-		$('.nav-wrap ul.top_nav').show();			
-		$('.nav-wrap ul.top_nav ul').removeAttr("style");;			
-	}
-
-	onScrollHighlighted();
-
-});
-
-// Smooth Sidebar
-// function sticky_relocate() {
-//     var window_top = $(window).scrollTop();
-//     var footer_top = $(".site-footer").offset().top;
-//     var div_top = $('.left_anchor').offset().top;
-//     var div_height = $(".leftnav-listing").height();
-    
-//     var padding = 20;  // tweak here or get from margins etc
-    
-//     if (window_top + div_height > footer_top - padding)
-//         $('.leftnav-listing').css({top: (window_top + div_height - footer_top + padding) * -1})
-//     else if (window_top > div_top) {
-//         $('.leftnav-listing').addClass('leftnav-fixed');
-//         $('.leftnav-listing').css({top: 0})
-//     } else {
-//         $('.leftnav-listing').removeClass('leftnav-fixed');
-//     }
-// }
-
-// $(function () {
-//     $(window).scroll(sticky_relocate);
-//     sticky_relocate();
-// });
-</script>
-</body>
+        // Espera a que el DOM esté completamente cargado
+        document.addEventListener("DOMContentLoaded", function() {
+            const imgIds = ['randomImage1', 'randomImage2'];
+            const promises = imgIds.map(id => fetchRandomImage(id, getRandomPageNumber()));
+            
+            // Espera a que todas las promesas se resuelvan
+            Promise.all(promises).then(() => {
+                console.log('Todas las imágenes han sido cargadas.');
+            });
+        });
+    </script>
+    </body>
 </html>
