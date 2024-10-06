@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap');
 /* Estilos generales */
 * {
+  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,6 +15,8 @@ a {
   }
 
 body {
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+  color: inherit; /* Mantiene el color del texto original del enlace */
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
