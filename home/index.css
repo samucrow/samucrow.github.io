@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap');
 /* Estilos generales */
 * {
-  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,8 +14,6 @@ a {
   }
 
 body {
-  text-decoration: none; /* Elimina el subrayado predeterminado */
-  color: inherit; /* Mantiene el color del texto original del enlace */
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
@@ -147,7 +144,7 @@ p {
         height: auto; /* Permitir que el cuerpo se ajuste a la altura del contenido */
          /* Espaciado alrededor del contenido */
         overflow-x: hidden;
-        margin-top: 27%;
+        margin-top: 0%;
         background-color: #010a43;
     }
     .overlay h1 {
