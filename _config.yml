@@ -1,0 +1,4 @@
+title: REMOTE HTB (Windows)
+description: FTP Anonymous, showmount, Metasploit, impacket, TeamViewer.
+ # add this line to the plugins list if you already have one
+theme: jekyll-theme-hacker
