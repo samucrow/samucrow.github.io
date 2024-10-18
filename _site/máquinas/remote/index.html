@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/style.css?v=2343efc25a1674883624591a2c0eaceb4895331c">
+    <link rel="stylesheet" href="/assets/css/style.css?v=cb495ab898ca19d1f573e4d8a5e5936e344919d1">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -26,20 +26,20 @@
 
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>REMOTE HTB | (Impacket, monturas, escalada mediante TeamViewer)</title>
+<title>REMOTE HTB | WRITEUPS</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="REMOTE HTB" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="(Impacket, monturas, escalada mediante TeamViewer)" />
-<meta property="og:description" content="(Impacket, monturas, escalada mediante TeamViewer)" />
+<meta name="description" content="Hecho por SamuCrow" />
+<meta property="og:description" content="Hecho por SamuCrow" />
 <link rel="canonical" href="http://localhost:4000/m%C3%A1quinas/remote/" />
 <meta property="og:url" content="http://localhost:4000/m%C3%A1quinas/remote/" />
-<meta property="og:site_name" content="REMOTE HTB" />
+<meta property="og:site_name" content="WRITEUPS" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="REMOTE HTB" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"(Impacket, monturas, escalada mediante TeamViewer)","headline":"REMOTE HTB","url":"http://localhost:4000/m%C3%A1quinas/remote/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Hecho por SamuCrow","headline":"REMOTE HTB","url":"http://localhost:4000/m%C3%A1quinas/remote/"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -49,9 +49,9 @@
     <header>
       <div class="container">
         <a id="a-title" href="/">
-          <h1>REMOTE HTB</h1>
+          <h1>WRITEUPS</h1>
         </a>
-        <h2>(Impacket, monturas, escalada mediante TeamViewer)</h2>
+        <h2>Hecho por SamuCrow</h2>
 
         <section id="downloads">
           
@@ -61,7 +61,11 @@
 
     <div class="container">
       <section id="main_content">
-        <p>Empezaremos haciendo el nmap de siempre:</p>
+        <h1 id="remote-htb">REMOTE HTB</h1>
+
+<h3 id="impacket-monturas-escalada-mediante-teamviewer">(Impacket, monturas, escalada mediante TeamViewer)</h3>
+
+<p>Empezaremos haciendo el nmap de siempre:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sCV</span> <span class="nt">-sS</span> <span class="nt">-n</span> <span class="nt">-Pn</span> <span class="nt">-vvv</span> 10.10.10.180 <span class="nt">-oN</span> escaneo_nmap

@@ -19,8 +19,8 @@
 # in the templates via {{ site.myvariable }}.
 
 show_githublink: [false]
-title: REMOTE HTB
-description: (Impacket, monturas, escalada mediante TeamViewer)
+title: WRITEUPS
+description: Hecho por SamuCrow
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://samucrow.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
