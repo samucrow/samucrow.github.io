@@ -3,9 +3,13 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 ---
-# REMOTE HTB
+![image](../../Imágenes%20Máquinas/Remote.jpg)
 
+
+# REMOTE HTB
 ### (Impacket, monturas, escalada mediante TeamViewer)
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 Empezaremos haciendo el nmap de siempre:
 
