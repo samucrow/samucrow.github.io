@@ -22,7 +22,7 @@ show_githublink: [false]
 title: REMOTE HTB
 description: (Impacket, monturas, escalada mediante TeamViewer)
 images_path: assets/zimages/
-baseurl: "/remote" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://samucrow.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
