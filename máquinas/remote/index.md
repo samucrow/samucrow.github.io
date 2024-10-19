@@ -6,7 +6,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/Remote.jpg)
 
 
-# REMOTE HTB
+# REMOTE [HACKTHEBOX]
 ### (Impacket, monturas, escalada mediante TeamViewer)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -237,3 +237,5 @@ Si nos vamos a la consola de metasploit, podemos poner el comando `search local_
 ![image](../zimages/Pasted_image_20231203224957.png)
 
 Probamos con todos los posibles exploits pero ninguno funciona
+
+# ./ROOTED
