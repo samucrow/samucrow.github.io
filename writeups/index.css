@@ -76,6 +76,7 @@ nav ul li a:hover {
     align-items: flex-start; /* Alinear al inicio para evitar problemas de alineación */
     max-width: 1200px; /* $honeycomb-max-width */
     margin: 0 auto;
+    margin-top: 20%;
     padding: 0;
 }
 
