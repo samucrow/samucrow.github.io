@@ -3,9 +3,11 @@ layout: default
 ---
 ![image](../../Imágenes%20Máquinas/EDITORIAL.png)
 
+
 # EDITORIAL [HACKTHEBOX]
 ### (BurpSuite, Repeater, Intruder, SSRF, ffuf, port enumeration, Gitpython, Remote Code Execution)
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 empezamos haciendo un escaneo de nmap con los siguientes parámetros:
 
