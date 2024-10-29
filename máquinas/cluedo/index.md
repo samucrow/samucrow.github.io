@@ -1,7 +1,7 @@
 ---
 layout: deafult
 ---
-
+![image](../../Imágenes%20Máquinas/CLUEDO.png)
 
 # CLUEDO [By SamuCrow]
 ## (Decoding [CyberChef], Fuzzing web, escalada mediante AWK)
