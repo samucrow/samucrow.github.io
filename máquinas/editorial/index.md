@@ -9,7 +9,7 @@ layout: default
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-empezamos haciendo un escaneo de nmap con los siguientes parámetros:
+Empezamos haciendo un escaneo de nmap con los siguientes parámetros:
 
 ```bash
 nmap -p- --open -sCV -sS -n -Pn -vvv 10.10.11.20 -oN escaneo_nmap
