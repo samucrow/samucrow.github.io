@@ -182,7 +182,9 @@ Vamos a hacer un port forwarding para poder ver la web en nuestra máquina.
 Para ello nos descargaremos chisel desde el repoo de github oficial (https://github.com/jpillora/chisel)
 
  >_en mi caso no me funcionó porque mi máquina tiene las librerías actualizadas a una versión mayor a la máquina víctima, así que tuve que hacer un docker y compilar el programa ahí, os dejo el link del binario compilado en la versión correcta por si tenéis el mismo problema._
- >**Link: https://mega.nz/file/d2hmSSSC#gU8_jdS9bcs0oNyKSY0qVNsVMXkLYRrWTrbeEODaWqM**
+**Link: https://mega.nz/file/d2hmSSSC#gU8_jdS9bcs0oNyKSY0qVNsVMXkLYRrWTrbeEODaWqM**
+
+
 
 
 A continuación lo compilamos, se puede hacer de 2 maneras:
