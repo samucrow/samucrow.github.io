@@ -74,7 +74,7 @@ nav ul li a:hover {
 
 /* Fondos de colores distintos para cada sección */
 #inicio {
-    background-image: url("../cosinas/fondo.png");
+    background-image: url("../cosinas/fondo.webp");
     background-size: cover;
 }
 
@@ -83,7 +83,7 @@ nav ul li a:hover {
 }
 
 #contacto {
-    background-image: url("../cosinas/fondo.png");
+    background-image: url("../cosinas/fondo.webp");
     background-size: cover;
 }
 
