@@ -28,7 +28,7 @@ function target(){
         ping -c1 $target 2>/dev/null
 
 if [ $? -ne 0 ]; then
-                echo -e "\e[1;34m Primero tienes que añadir una ip VÁLIDA con el comando 'settarget', pruébalo ;) \e[0m"
+                echo -e "\n\n\e[1;34m Primero tienes que añadir una ip VÁLIDA con el comando 'settarget', pruébalo ;) \e[0m\n"
                 return 1
 fi
 }
