@@ -30,7 +30,7 @@ html, body {
 }
 
 .sp1 {
-	width: 150px; 
+	width: 150px;
 	height: 150px;
 	border-top: 4px solid #F44336;
 	animation: rotate 1s linear infinite;
