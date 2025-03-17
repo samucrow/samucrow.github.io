@@ -44,11 +44,8 @@ Y recibimos la shell:
 
 ![image](../zimages/Pasted_image_20250317005048.png)
 
-Si nos vamos a `/home/magnus/user.txt` ya obtenemos la flag de user:
+Si nos vamos a `/home/magnus/user.txt` ya obtenemos la flag de user.
 
-![image](../zimages/Pasted_image_20250317011348.png)
-
-==user flag== -> `THM{4a6831d5f124b25eefb1e92e0f0da4ca}`
 
 # Escalada de Privilegios
 
@@ -84,11 +81,7 @@ Ahora si ejecutamos el programa bash y le pasamos el parámetro `-p`, obtenemos 
 
 ![image](../zimages/Pasted_image_20250317011032.png)
 
-Por último, ejecutamos en esta nueva shell el comando `cat /root/root.txt` y ya obtendríamos la flag de root:
-
-![image](../zimages/Pasted_image_20250317011152.png)
-
-==root flag== -> `THM{33ad5b530e71a172648f424ec23fae60}`
+Por último, ejecutamos en esta nueva shell el comando `cat /root/root.txt` y ya obtendríamos la flag de root.
 
 
 # ./ROOTED
