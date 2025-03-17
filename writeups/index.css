@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Centra verticalmente */
+    height: 150vh; /* Centra verticalmente */
     background: #494949; /* Color de fondo */
 }
 
