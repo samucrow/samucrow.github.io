@@ -5,7 +5,7 @@ layout: default
 
 
 # CLUEDO [By SamuCrow]
-## (Decoding [CyberChef], Fuzzing web, escalada mediante AWK)
+### (Decoding [CyberChef], Fuzzing web, escalada mediante AWK)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
