@@ -2,11 +2,17 @@
 html, body {
 	background: #111;
 	margin: 0;
-	height: 100vh; /* Altura completa */
+	height: 100%; /* Altura completa */
 	display: flex; /* Flex para centrar contenido */
 	flex-direction: column; /* Cambiar la dirección del flex a columna */
 	justify-content: center; /* Centrar horizontalmente */
 	align-items: center; /* Centrar verticalmente */
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none; 
+	color: inherit;
 }
 
 .container {
@@ -16,6 +22,7 @@ html, body {
 	display: flex; /* Flex para centrar la animación */
 	justify-content: center;
 	align-items: center;
+	top: -15%;
 }
 
 .sp {
@@ -31,55 +38,97 @@ html, body {
 }
 
 .sp1 {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	border-top: 4px solid #F44336;
 	animation: rotate 1s linear infinite;
 }
 
 .sp2 {
-	width: 130px;
-	height: 130px;
+	width: 180px;
+	height: 180px;
 	border-top: 4px solid #03A9F4;
 	animation: rotate 1.428571s linear infinite;
 }
 
 .sp3 {
-	width: 110px;
-	height: 110px;
+	width: 160px;
+	height: 160px;
 	border-top: 4px solid #CDDC39;
 	animation: rotate 0.7s linear infinite;
 }
 
 .sp4 {
-	width: 90px;
-	height: 90px;
+	width: 140px;
+	height: 140px;
 	border-top: 4px solid #795548;
 	animation: rotate 1.8s linear infinite;
 }
 
 .sp5 {
-	width: 70px;
-	height: 70px;
+	width: 120px;
+	height: 120px;
 	border-top: 4px solid #607D8B;
 	animation: rotate 1.2s linear infinite;
 }
 
 .sp6 {
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 	border-top: 4px solid #FAFAFA;
-	animation: rotate 1.5s linear infinite;
+	animation: rotate 1s linear infinite;
 }
 
+.sp7 {
+	width: 70px;
+	height: 70px;
+	border-top: 4px solid #795548;
+	animation: rotate 0.6s linear infinite;
+}
+
+.sp8 {
+	width: 50px;
+	height: 50px;
+	border-top: 4px solid #607D8B;
+	animation: rotate 0.4s linear infinite;
+}
+
+.sp9 {
+	width: 20px;
+	height: 0px;
+	border-top: 4px solid #000000;
+	animation: rotate 0.5s linear infinite;
+}
+
+
 .letras {
-    margin-top: 20px; /* Espacio entre la animación y el texto */
+	position: relative;
+    top: -100px; /* Espacio entre la animación y el texto */
     color: #fff; /* Color del texto */
-    font-size: 24px; /* Tamaño de la fuente */
+    font-size: 50px; /* Tamaño de la fuente */
+	text-align: center;
+}
+
+.letras_span {
+	color: aqua;
 }
 
 @keyframes rotate {
 	to {
 		transform: rotateZ(360deg);
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.container {
+		top: 0%;
+	}
+	.sp {
+		top: -40%;
+	}
+	.letras{
+		font-size: 50px;
+		text-align: center;
+		top: 0%;
 	}
 }
