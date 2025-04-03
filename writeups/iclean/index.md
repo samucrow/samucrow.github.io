@@ -272,9 +272,7 @@ Si hacemos un `whoami`, ya somos root:
 
 ![image](../zimages/Pasted_image_20241103200048.png)
 
-Nos vamos al directorio '/root' y tenemos la flag de root (`abc73e6dc5e00806606a41efb6482fbd`):
-
-![image](../zimages/Pasted_image_20241103200136.png)
+Nos vamos al directorio '/root' y tenemos la flag de root.
 
 ![image](../zimages/Pasted_image_20241103171820.png)
 
