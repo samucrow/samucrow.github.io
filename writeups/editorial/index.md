@@ -155,9 +155,7 @@ Así que vamos a probar a entrar por ssh con esas credenciales:
 
 ![image](../zimages/Pasted_image_20241026152906.png)
 
-Tenemos la flag de user:
-
-![image](../zimages/Pasted_image_20241026152930.png)
+Tenemos la flag de user.
 
 Hacemos un tratamiento de la TTY:
 

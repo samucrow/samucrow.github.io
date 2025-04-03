@@ -216,11 +216,9 @@ Ya somos root, pero no acaba aquí la cosa ya que si hacemos un `hostname -I`, v
 
 ![image](../zimages/Pasted_image_20241031172810.png)
 
-No obstante, si vamos a /home/, vemos que hay un usuario llamado "augustus", si nos metemos en su perfil, podremos leer la flag de user `cbd7227d20aca2ede44f26b2cc2b9fef`:
+No obstante, si vamos a /home/, vemos que hay un usuario llamado "augustus", si nos metemos en su perfil, podremos leer la flag de user.
 
-![image](../zimages/Pasted_image_20241031173248.png)
-
-con el comando `route -n`, podemos ver la ip con la que se comunica el docker y la máquina víctima, que en nuestro caso es la `172.19.0.1`:
+Con el comando `route -n`, podemos ver la ip con la que se comunica el docker y la máquina víctima, que en nuestro caso es la `172.19.0.1`:
 
 ![image](../zimages/Pasted_image_20241031174614.png)
 
@@ -318,9 +316,7 @@ chmod 4755 bash
 
 ![image](../zimages/Pasted_image_20241031191416.png)
 
-Ya somos root :). En mi caso cambié la contraseña de root por la misma que augustus y puse a augustus en el grupo de root para poder cambiar a root sin necesidad de ese archivo bash pero no hace falta. Nos metemos en /root y le hacemos un cat a la flag de root `50a677f6b8eeb59d335ec6b97b7b60b8`:
-
-![image](../zimages/Pasted_image_20241031193030.png)
+Ya somos root :). En mi caso cambié la contraseña de root por la misma que augustus y puse a augustus en el grupo de root para poder cambiar a root sin necesidad de ese archivo bash pero no hace falta. Nos metemos en /root y le hacemos un cat a la flag de root.
 
 ![image](../zimages/Pasted_image_20241027232609.png)
 

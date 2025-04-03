@@ -10,6 +10,8 @@ layout: default
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
+# NMAP Scan
+
 En primer lugar haremos un escaneo de puertos con nmap:
 
 ```bash
@@ -71,7 +73,7 @@ Esto es lo que nos encuentra:
 ![image](../zimages/Pasted_image_20241105171532.png)
 
 
-# Strapi Exploitation
+# Strapi Exploitation / User Flag
 
 Después de fijarse en todos los directorios, el que se llama '/init' nos da una pista, vamos a hacerle un curl para verlo mejor:
 
@@ -130,10 +132,7 @@ Le decimos que nos haga un curl a nuestra ip y, como es un archivo index.html, l
 
 ![image](../zimages/Pasted_image_20241105173351.png)
 
-De esta manera ya tenemos la flag de user (`39a1ef07f9adbf92023ce6010e816733`):
-
-![image](../zimages/Pasted_image_20241105173445.png)
-
+De esta manera ya tenemos la flag de user.
 
 # Privilege escalation (Option pkexec)
 
@@ -249,9 +248,8 @@ Ahora vamos a seguir el mismo procedimiento de antes para conseguir una reverse 
 
 ![image](../zimages/Pasted_image_20241105183351.png)
 
-Ahora nos vamos al directorio de '/root' y leemos la flag de root (`fcd5d89e5d7ea86ce34131624ff2d851`):
+Ahora nos vamos al directorio de '/root' y leemos la flag de root.
 
-![image](../zimages/Pasted_image_20241105184541.png)
 
 ![image](../zimages/Pasted_image_20241105183451.png)
 

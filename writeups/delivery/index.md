@@ -9,6 +9,8 @@ layout: default
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+# NMAP Scan
+
 Empezamos haciendo un escaneo de nmap con los siguientes argumentos:
 
 ```bash
@@ -26,6 +28,8 @@ Si nos metemos en la web (puerto 80) y pinchamos donde pone "HelpDesk", nos llev
 Nos tendremos que ir a /etc/hosts y añadirlo, una vez hecho, ya nos muestra el contenido:
 
 ![image](../zimages/Pasted_image_20241118000804.png)
+
+# Web Enumeration
 
 Si le damos a "Open a New Ticket", nos sale esto:
 
@@ -53,6 +57,8 @@ Si ahora nos vamos a la web donde tenemos el ticket activo y recargamos, vemos q
 
 ![image](../zimages/Pasted_image_20241118013240.png)
 
+# User Flag
+
 En el correo hay un link, vamos a meternos:
 
 ![image](../zimages/Pasted_image_20241118013534.png)
@@ -65,9 +71,9 @@ Ahora que tenemos unas posibles credenciales, vamos a intentar entrar por ssh, q
 
 ![image](../zimages/Pasted_image_20241118014300.png)
 
-Ya tenemos la flag de root:
+Ya tendríamos la flag de user en su directorio personal.
 
-`00fe0c6ba14951250a36d5184ae3d96e`
+# PRIVESC / Root Flag
 
 Ahora vamos a enumerar más usuarios del sistema mediante el siguiente comando:
 
@@ -191,9 +197,7 @@ Ahora si volvemos a la máquina víctima, podemos probar a convertirnos en root 
 
 ![image](../zimages/Pasted_image_20241118045512.png)
 
-Una vez somos root, solo nos queda irnos al directorio '/root' y ver la flag (`7d408b4c5e32b8b9d6dbf0b8e1554fd5`):
-
-![image](../zimages/Pasted_image_20241118045541.png)
+Una vez somos root, solo nos queda irnos al directorio '/root' y ver la flag.
 
 # ./ROOTED
 

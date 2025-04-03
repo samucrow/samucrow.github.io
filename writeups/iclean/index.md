@@ -10,6 +10,8 @@ layout: default
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ´
 
 
+# NMAP Scan
+
 Vamos a empezar haciendo un escaneo de nmap con los siguientes parámetros:
 
 ```bash
@@ -27,6 +29,8 @@ Si hacemos un `whatweb 10.10.11.12`, nos sale un dominio, que vamos a meter en /
 Una vez dentro del /etc/hosts, ya podemos entrar en la web:
 
 ![image](../zimages/Pasted_image_20241103180426.png)
+
+# Enumeration
 
 si nos fijamos en wappalizer, la extensión de navegador para ver lo que hay por detrás de la web, vemos que usa flask y python, por lo que podemos probar con una SQLI usando Burpsuite. Si nos fijamos, hay un panel de login, vamos a interceptarlo en Burpsuite a ver si existe una SQLI:
 
@@ -158,6 +162,8 @@ Lo inyectamos en la solicitud de Burpsuite y nos devuelve el comando "id":
 
 ![image](../zimages/Pasted_image_20241103191930.png)
 
+# User Flag
+
 Sabiendo que ya tenemos RCE, vamos a intentar conseguir una reverse shell. Para ello nos creamos un archivo .html con un código en bash, así nos aseguramos de que no se lía el servidor, ya que si ponemos el comando directamente en Burpsuite puede dar error:
 
 ![image](../zimages/Pasted_image_20241103192055.png)
@@ -212,9 +218,9 @@ Vemos que nos saca sólo la contraseña del usuario "consuela", vamos a intentar
 
 ![image](../zimages/Pasted_image_20241103194206.png)
 
-Ahora, en primer lugar, nos vamos al directorio /home/consuela y miramos la flag de user, que es `103bcea9bc79cd08b54ebf8a69be12a7`:
+Nos vamos al directorio /home/consuela y miramos la flag de user.
 
-![image](../zimages/Pasted_image_20241103194257.png)
+# PRIVESC / Root Flag
 
 Ahora vamos a intentar ampliar los privilegios a root, empezamos por un `sudo -l`:
 
