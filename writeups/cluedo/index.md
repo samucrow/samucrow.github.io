@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/CLUEDO.png)
 
 
-# CLUEDO [By SamuCrow]
+# CLUEDO [By SamuCrow] / Easy
 ### (Decoding [CyberChef], Fuzzing web, escalada mediante AWK)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

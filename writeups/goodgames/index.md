@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/GOOD_GAMES.png)
 
 
-# GOOD GAMES [HACKTHEBOX]
+# GOOD GAMES [HACKTHEBOX] / Easy
 ### (Fuzzing web con Wfuzz, Burpsuite, SQL injection, XSS, SSTI, Bash scripting, Python scripting, contenedor de Docker, monturas)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

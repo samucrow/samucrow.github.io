@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/EDITORIAL.png)
 
 
-# EDITORIAL [HACKTHEBOX]
+# EDITORIAL [HACKTHEBOX] / Easy
 ### (BurpSuite, Repeater, Intruder, SSRF, ffuf, port enumeration, Gitpython, Remote Code Execution)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

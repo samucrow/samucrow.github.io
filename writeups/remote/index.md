@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/Remote.jpg)
 
 
-# REMOTE [HACKTHEBOX]
+# REMOTE [HACKTHEBOX] / Easy
 ### (Anonymous FTP, Wfuzz enumeration, mounts, hash cracking, Umbraco Remote Code Execution (RCE), Metasploit, Impacket, TeamViewer enumeration, Evil-winrm)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ´

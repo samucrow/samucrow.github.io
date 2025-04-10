@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/HORIZONTALL.png)
 
 
-# HORIZONTALL [HACKTHEBOX]
+# HORIZONTALL [HACKTHEBOX] / Easy
 ### (Web fuzzing, Strapi RCE exploitation, mySQL, pkexec privilege escalation, Chisel port forwarding, Laravel Root RCE exploitation)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

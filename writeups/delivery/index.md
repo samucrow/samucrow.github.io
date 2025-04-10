@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/DELIVERY.webp)
 
 
-# DELIVERY [HACKTHEBOX]
+# DELIVERY [HACKTHEBOX] / Easy
 ### (Host Enumeration, Support Ticket System Exploitation, Information Leakage, SQL Database Enumeration, Hash Cracking, Hashcat Rules for BruteForce)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

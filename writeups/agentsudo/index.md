@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/AGENT_SUDO.png)
 
 
-# AGENT SUDO [TRYHACKME]
+# AGENT SUDO [TRYHACKME] / Easy
 ### (Uso de Burpsuite, esteganografía y johntheripper)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

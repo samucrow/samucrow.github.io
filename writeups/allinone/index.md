@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/ALL_IN_ONE.png)
 
 
-# ALL IN ONE [TRYHACKME]
+# ALL IN ONE [TRYHACKME] / Easy
 ### (Descifrado, Wordpress, Local File Inclusion (LFI), SUID, Crontab, LXD)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

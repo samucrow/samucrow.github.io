@@ -4,7 +4,7 @@ layout: default
 ![image](../../Imágenes%20Máquinas/BILLING.webp)
 
 
-# BILLING [TRYHACKME]
+# BILLING [TRYHACKME] / Easy
 ### (Unauthenticated Remote Command Execution, fail2ban firewall bypass, fail2ban abuse for privilege escalation)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
