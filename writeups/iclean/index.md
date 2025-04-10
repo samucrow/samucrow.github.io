@@ -7,7 +7,7 @@ layout: default
 # ICLEAN [HACKTHEBOX] / Medium
 ### (Burpsuite, fuzzing, XSS, SSTI, HTML injection, cookie hijacking, python TTY spawn, SSTI filter bypassing, mySQL, hash cracking, escalada mediante qpdf)
 
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ´
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
 # NMAP Scan

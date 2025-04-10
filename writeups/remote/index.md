@@ -1,13 +1,13 @@
 ---
 layout: default
 ---
-![image](../../Imágenes%20Máquinas/Remote.jpg)
+![image](../../Imágenes%20Máquinas/REMOTE.jpg)
 
 
 # REMOTE [HACKTHEBOX] / Easy
 ### (Anonymous FTP, Wfuzz enumeration, mounts, hash cracking, Umbraco Remote Code Execution (RCE), Metasploit, Impacket, TeamViewer enumeration, Evil-winrm)
 
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ´
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 # NMAP Scan
 
