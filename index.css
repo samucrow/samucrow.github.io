@@ -2,7 +2,7 @@
 html, body {
 	background: #111;
 	margin: 0;
-	height: 100vh; /* Altura completa */
+	height: 100%; /* Altura completa */
 	display: flex; /* Flex para centrar contenido */
 	justify-content: center; /* Centrar horizontalmente */
 	align-items: center; /* Centrar verticalmente */
@@ -15,6 +15,7 @@ html, body {
 	display: flex; /* Flex para centrar la animación */
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
 }
 
 .sp {
