@@ -5,7 +5,7 @@ layout: default
 
 
 # PERMX [HACKTHEBOX] / Easy
-### (Wfuzz Hosts Scan, File Linking, Chamilo LMS Unauthenticated File Upload Vulnerability, BigUploadFile Remote Code Execution (RCE), Sudoers File Edit for Privilege Escalation using ln command)
+### (Wfuzz Hosts Scan, File Linking for PrivEsc, Chamilo LMS Unauthenticated File Upload Vulnerability, BigUploadFile Remote Code Execution (RCE), Sudoers File Edit for Privilege Escalation using ln command)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
