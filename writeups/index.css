@@ -15,11 +15,8 @@ a {
 
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 150vh; /* Centra verticalmente */
     background: #494949; /* Color de fondo */
 }
 
@@ -32,15 +29,15 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 1% 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    height: 100px;
+    height: 15%;
 }
 
 .logo img {
     height: 100px;
-    padding-top: 10px;
+    padding-top: 10%;
 }
 
 nav {
@@ -76,7 +73,7 @@ nav ul li a:hover {
     align-items: flex-start; /* Alinear al inicio para evitar problemas de alineación */
     max-width: 1200px; /* $honeycomb-max-width */
     margin: 0 auto;
-    margin-top: 35%;
+    margin-top: 8%;
     padding: 0;
 }
 
