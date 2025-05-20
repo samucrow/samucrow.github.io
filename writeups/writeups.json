@@ -1,0 +1,42 @@
+[
+    {
+      "name": "Hospital",
+      "platform": "HTB",
+      "difficulty": "Medium",
+      "os": "Windows",
+      "description": "Una máquina interesante que comienza explotando un Local File Inclusion en Linux para acceder al sistema, después se hace pivoting a Windows. La escalada también es entretenida, ofreciendo un reto técnico pero divertido",
+      "tags": ["Active Directory", "SMB Enumeration", "PHP LFI & RCE", "Caido Automation", "Information Leakage", "Vulnerable Kernel", "GhostScript malicious .eps", "XAMPP Escalation"],
+      "link": "https://samucrow.github.io/writeups/hospital",
+      "published": "2025-05-14T14:49:42Z"
+    }, 
+    {
+      "name": "RootMe",
+      "platform": "THM",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "description": "Exploración básica de vulnerabilidades web y escalada local.",
+      "tags": ["web", "local escalation", "Linux"],
+      "link": "https://samucrow.github.io",
+      "published": "2025-05-09T10:00:00Z"
+    },
+    {
+      "name": "Codewars",
+      "platform": "THM",
+      "difficulty": "Medium",
+      "os": "Linux",
+      "description": "CTF about bypassing authentication and exploiting a web-based code execution environment.",
+      "tags": ["PrivEsc", "PathHijacking", "RCE", "SQLi"],
+      "link": "https://samucrow.github.io",
+      "published": "2025-05-10T14:30:00Z"
+    },
+    {
+      "name": "Blue",
+      "platform": "HTB",
+      "difficulty": "Easy",
+      "os": "Windows",
+      "description": "Un clásico de escalada de privilegios usando EternalBlue.",
+      "tags": ["SMB", "EternalBlue", "Windows", "exploit"],
+      "link": "https://samucrow.github.io",
+      "published": "2025-05-10T14:30:00Z"
+    }
+]
