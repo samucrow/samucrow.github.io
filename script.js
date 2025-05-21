@@ -95,7 +95,7 @@ function enableMobileHover() {
 
     const observer = new IntersectionObserver(
         ([entry]) => {
-            clearTimeout(debounceTimeout); // Limpiar cualquier timeout previo
+            clearTimeout(debounceTimeout);
 
             debounceTimeout = setTimeout(() => {
                 const fullyVisible = entry.intersectionRatio >= 0.8;
@@ -120,10 +120,96 @@ function enableMobileHover() {
     observer.observe(target);
 }
 
+// Writeups Functions
+function randomPlaceholder() {
+    fetch('writeups.json')
+        .then(response => response.json())
+        .then(data => {
+            const names = new Set();
+            const platforms = new Set();
+            const difficulties = new Set();
+            const osList = new Set();
+            const tags = new Set();
+
+            data.forEach(writeup => {
+                if (writeup.name) {
+                    writeup.name.toString().split(/[\s\-_.]+/).forEach(w => w.length > 1 && names.add(w));
+                }
+                if (writeup.platform) {
+                    writeup.platform.toString().split(/[\s\-_.]+/).forEach(w => w.length > 1 && platforms.add(w));
+                }
+                if (writeup.difficulty) {
+                    writeup.difficulty.toString().split(/[\s\-_.]+/).forEach(w => w.length > 1 && difficulties.add(w));
+                }
+                if (writeup.os) {
+                    writeup.os.toString().split(/[\s\-_.]+/).forEach(w => w.length > 1 && osList.add(w));
+                }
+                if (Array.isArray(writeup.tags)) {
+                    writeup.tags.forEach(tag =>
+                        tag.toString().split(/[\s\-_.]+/).forEach(w => w.length > 1 && tags.add(w))
+                    );
+                }
+            });
+
+            const pickRandom = (array, count = 1) =>
+                [...array].sort(() => 0.5 - Math.random()).slice(0, count);
+
+            const getRandomInt = (min, max) =>
+                Math.floor(Math.random() * (max - min + 1)) + min;
+
+            function getBiasedLength() {
+                const rand = Math.random();
+                if (rand < 0.05) return 1;    // 5%
+                if (rand < 0.15) return 2;    // 10% (0.05 + 0.10)
+                if (rand < 0.85) return 3;    // 70% (0.15 + 0.70)
+                return 4;                     // 15% (resto)
+            }
+
+            const namesArr = Array.from(names);
+            const platformsArr = Array.from(platforms);
+            const difficultiesArr = Array.from(difficulties);
+            const osArr = Array.from(osList);
+            const tagsArr = Array.from(tags);
+
+            const includeName = Math.random() < 0.3 && namesArr.length > 0;
+            let phrase = [];
+
+            if (includeName) {
+                phrase = pickRandom(namesArr, 1);
+            } else {
+                const length = getBiasedLength();
+                const selected = [];
+
+                if (length >= 1 && platformsArr.length > 0)
+                    selected.push(...pickRandom(platformsArr, 1));
+                if (length >= 2 && difficultiesArr.length > 0)
+                    selected.push(...pickRandom(difficultiesArr, 1));
+                if (length >= 3 && osArr.length > 0)
+                    selected.push(...pickRandom(osArr, 1));
+                if (length >= 4 && tagsArr.length > 0)
+                    selected.push(...pickRandom(tagsArr, Math.min(2, tagsArr.length)));
+
+                phrase = pickRandom(selected, getRandomInt(1, Math.min(4, selected.length)));
+            }
+
+            const input = document.getElementById('searchbox-input');
+            if (input) {
+                input.placeholder = phrase.join(' ');
+            }
+        })
+        .catch(err => console.error('Error generando el placeholder:', err));
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    displayWriteup();
+    if (window.location.pathname === '/') {
+        displayWriteup();
+    }
+
     plausibleVisitors();
+    if (window.location.pathname === '/writeups/') {
+        randomPlaceholder();
+    }
 
     const menuToggle = document.getElementById('toggle-button');
     const navMenu = document.querySelector('.nav-menu');
@@ -142,16 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuToggle.addEventListener('click', () => {
         if (isMenuOpen) {
-            // Añadir clase de cierre (sin quitar active aún)
             navMenu.classList.add('closing');
 
-            // Después de animar, limpiar clases
             setTimeout(() => {
                 navMenu.classList.remove('active', 'closing');
             }, 600); // Duración igual a la animación CSS
             navRightLinks.classList.remove('active');
         } else {
-            // Apertura directa
             navMenu.classList.add('active');
             navRightLinks.classList.add('active');
         }

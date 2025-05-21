@@ -4,6 +4,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    font-family: system-ui, Roboto;
 }
 
 body {
@@ -70,6 +71,15 @@ input {
     text-transform: none;
     text-shadow: none;
     -webkit-font-smoothing: antialiased;
+}
+
+select:focus-visible {
+    outline: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
 }
 
 input::placeholder {
@@ -287,8 +297,101 @@ input::placeholder {
 .machines-principal-description {
     display: block;
     padding: 0px 16px;
-    margin-top: 20px;
+    margin-top: 20nnpx;
     max-width: 700px;
+}
+
+.writeups-search-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.search-principal-filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+    color: #97a3b4;
+    font-weight: 500;
+    background-color: #474856;
+    border-radius: 6px;
+}
+
+.selected {
+    color: #0f1729;
+    background-color: #0bf;
+}
+
+.filter-hover {
+    transition: background-color 150ms cubic-bezier(.4,0,.2,1);
+}
+
+.filter-hover:hover {
+    color: #fafafa;
+    background-color: #434856cc;
+}
+
+.searchbox {
+    display: flex;
+    gap: 8px;
+}
+
+.searchbox-form {
+    position: relative;
+}
+
+.searchbox-input {
+    width: 300px;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+    color: #fafafa;
+    background-color: #434856;
+    border: none;
+    border-radius: 6px;
+}
+
+.searchbox-input:focus {
+    outline: #0bf solid 1px;
+}
+
+.searchbox-search-button {
+    position: absolute;
+    color: #97a3b4;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    padding: 0;
+}
+
+.searchbox-search-icon {
+    height: auto;
+    width: 16px;
+    color: #97a3b4;
+}
+
+.machines-filter-select {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+    color: #fafafa;
+    background-color: #434856;
+    border-color: #434856;
+    border-radius: 6px;
+}
+
+.machines-filter-select:hover {
+    border-color: #0bf;
+    border-width: 1px;
 }
 
 /* Footer */
