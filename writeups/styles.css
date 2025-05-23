@@ -805,3 +805,9 @@ input::placeholder {
     }
 
 }
+
+@media (max-width: 600px) {
+    .searchbox {
+        flex-direction: column;
+    }
+}
