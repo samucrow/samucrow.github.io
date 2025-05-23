@@ -297,7 +297,7 @@ input::placeholder {
 .machines-principal-description {
     display: block;
     padding: 0px 16px;
-    margin-top: 20nnpx;
+    margin-top: 20px;
     max-width: 700px;
 }
 
@@ -776,11 +776,24 @@ input::placeholder {
         font-size: 7vw;
     }
 
+    .machines-container {
+        max-width: 100%;
+    }
+
+    .machines-principal-description {
+        max-width: 100%;
+        text-align: left;
+    }
+
     .writeups-search-content {
         flex-direction: row;
         gap: 16px;
         justify-content: space-between;
         flex-wrap: wrap;
+    }
+
+    .searchbox-input {
+        width: auto;
     }
 
     .machines-grid {
