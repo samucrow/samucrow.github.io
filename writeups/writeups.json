@@ -6,7 +6,8 @@
       "os": "Windows",
       "description": "Una máquina interesante que comienza explotando un Local File Inclusion en Linux para acceder al sistema, después se hace pivoting a Windows. La escalada también es entretenida, ofreciendo un reto técnico pero divertido",
       "tags": ["Active Directory", "SMB Enumeration", "PHP LFI & RCE", "Caido Automation", "Information Leakage", "Vulnerable Kernel", "GhostScript malicious .eps", "XAMPP Escalation"],
-      "link": "https://samucrow.github.io/writeups/hospital",
+      "link": "/writeups/hospital",
+      "image": "/images/machines/HOSPITAL.webp",
       "published": "2025-05-14T14:49:42Z"
     }, 
     {
