@@ -776,6 +776,17 @@ input::placeholder {
         font-size: 7vw;
     }
 
+    .writeups-search-content {
+        flex-direction: row;
+        gap: 16px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .machines-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
     .footer-links-grid {
         grid-template-columns: 1fr;
     }
